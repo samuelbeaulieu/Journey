@@ -56,15 +56,31 @@
 		DC64D9F420B73FAD00DBA7AB /* Journey */ = {
 			isa = PBXGroup;
 			children = (
+				DC64DA0C20B741C000DBA7AB /* Storyboards */,
+				DC64DA0A20B741B200DBA7AB /* Coredata */,
 				DC64D9F520B73FAD00DBA7AB /* AppDelegate.swift */,
 				DC64D9F720B73FAD00DBA7AB /* ViewController.swift */,
-				DC64D9F920B73FAD00DBA7AB /* Main.storyboard */,
 				DC64D9FF20B73FAE00DBA7AB /* Assets.xcassets */,
-				DC64DA0120B73FAE00DBA7AB /* LaunchScreen.storyboard */,
 				DC64DA0420B73FAE00DBA7AB /* Info.plist */,
-				DC64D9FC20B73FAD00DBA7AB /* Journey.xcdatamodeld */,
 			);
 			path = Journey;
+			sourceTree = "<group>";
+		};
+		DC64DA0A20B741B200DBA7AB /* Coredata */ = {
+			isa = PBXGroup;
+			children = (
+				DC64D9FC20B73FAD00DBA7AB /* Journey.xcdatamodeld */,
+			);
+			name = Coredata;
+			sourceTree = "<group>";
+		};
+		DC64DA0C20B741C000DBA7AB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DC64D9F920B73FAD00DBA7AB /* Main.storyboard */,
+				DC64DA0120B73FAE00DBA7AB /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,10 +307,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.samuelbeaulieu.Journey;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samuelbeaulieu.journey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -309,10 +325,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.samuelbeaulieu.Journey;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samuelbeaulieu.journey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

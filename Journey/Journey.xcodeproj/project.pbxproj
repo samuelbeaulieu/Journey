@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		DC64D9F620B73FAD00DBA7AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64D9F520B73FAD00DBA7AB /* AppDelegate.swift */; };
-		DC64D9F820B73FAD00DBA7AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64D9F720B73FAD00DBA7AB /* ViewController.swift */; };
 		DC64D9FB20B73FAD00DBA7AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC64D9F920B73FAD00DBA7AB /* Main.storyboard */; };
 		DC64D9FE20B73FAD00DBA7AB /* Journey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC64D9FC20B73FAD00DBA7AB /* Journey.xcdatamodeld */; };
 		DC64DA0020B73FAE00DBA7AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC64D9FF20B73FAE00DBA7AB /* Assets.xcassets */; };
 		DC64DA0320B73FAE00DBA7AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC64DA0120B73FAE00DBA7AB /* LaunchScreen.storyboard */; };
+		DC91EB4C20B849B700CC31B8 /* IntroductionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91EB4B20B849B700CC31B8 /* IntroductionVC.swift */; };
+		DC91EB4E20B849CC00CC31B8 /* LoginWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91EB4D20B849CC00CC31B8 /* LoginWithEmailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DC64D9F220B73FAD00DBA7AB /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC64D9F520B73FAD00DBA7AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC64D9F720B73FAD00DBA7AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DC64D9FA20B73FAD00DBA7AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC64D9FD20B73FAD00DBA7AB /* Journey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Journey.xcdatamodel; sourceTree = "<group>"; };
 		DC64D9FF20B73FAE00DBA7AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC64DA0220B73FAE00DBA7AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC64DA0420B73FAE00DBA7AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC91EB4B20B849B700CC31B8 /* IntroductionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionVC.swift; sourceTree = "<group>"; };
+		DC91EB4D20B849CC00CC31B8 /* LoginWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +58,13 @@
 		DC64D9F420B73FAD00DBA7AB /* Journey */ = {
 			isa = PBXGroup;
 			children = (
+				DC64DA0420B73FAE00DBA7AB /* Info.plist */,
+				DC64D9FF20B73FAE00DBA7AB /* Assets.xcassets */,
 				DC64DA0C20B741C000DBA7AB /* Storyboards */,
 				DC64DA0A20B741B200DBA7AB /* Coredata */,
 				DC64D9F520B73FAD00DBA7AB /* AppDelegate.swift */,
-				DC64D9F720B73FAD00DBA7AB /* ViewController.swift */,
-				DC64D9FF20B73FAE00DBA7AB /* Assets.xcassets */,
-				DC64DA0420B73FAE00DBA7AB /* Info.plist */,
+				DC91EB4B20B849B700CC31B8 /* IntroductionVC.swift */,
+				DC91EB4D20B849CC00CC31B8 /* LoginWithEmailVC.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -154,7 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC64D9F820B73FAD00DBA7AB /* ViewController.swift in Sources */,
+				DC91EB4C20B849B700CC31B8 /* IntroductionVC.swift in Sources */,
+				DC91EB4E20B849CC00CC31B8 /* LoginWithEmailVC.swift in Sources */,
 				DC64D9FE20B73FAD00DBA7AB /* Journey.xcdatamodeld in Sources */,
 				DC64D9F620B73FAD00DBA7AB /* AppDelegate.swift in Sources */,
 			);

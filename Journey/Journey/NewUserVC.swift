@@ -13,6 +13,7 @@ class NewUserVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     
     @IBOutlet weak var imagePicked: UIImageView!
     
+    @IBOutlet weak var imagePlaceHolder: UIImageView!
     
     let galleryPicker = UIImagePickerController()
     // create a method to fetch your photo asset and return an UIImage on completion
@@ -30,6 +31,12 @@ class NewUserVC: UIViewController, UINavigationControllerDelegate, UIImagePicker
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        imagePlaceHolder.layer.cornerRadius = imagePlaceHolder.frame.width / 2
+        imagePlaceHolder.layer.borderWidth = 1
+        imagePlaceHolder.layer.borderColor = UIColor.lightGray.cgColor
+        
         // lets add a selector to when the user taps the image
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(openPicker))
 //        imagePicked.isUserInteractionEnabled = true

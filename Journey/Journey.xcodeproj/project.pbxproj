@@ -69,11 +69,7 @@
 				DC64DA0C20B741C000DBA7AB /* Storyboards */,
 				DC64DA0A20B741B200DBA7AB /* Coredata */,
 				DC64D9F520B73FAD00DBA7AB /* AppDelegate.swift */,
-				DC91EB4B20B849B700CC31B8 /* IntroductionVC.swift */,
-				DC91EB4D20B849CC00CC31B8 /* LoginWithEmailVC.swift */,
-				DC91EB5320B8932C00CC31B8 /* JournalVC.swift */,
-				DCC1CA7F20BC73C700D76A65 /* NewUserVC.swift */,
-				DCF9BA9A20C47C05003C6D04 /* SettingsVC.swift */,
+				DCF9BA9C20C484B1003C6D04 /* ViewController */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -93,6 +89,18 @@
 				DC64DA0120B73FAE00DBA7AB /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		DCF9BA9C20C484B1003C6D04 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DC91EB4B20B849B700CC31B8 /* IntroductionVC.swift */,
+				DC91EB4D20B849CC00CC31B8 /* LoginWithEmailVC.swift */,
+				DC91EB5320B8932C00CC31B8 /* JournalVC.swift */,
+				DCC1CA7F20BC73C700D76A65 /* NewUserVC.swift */,
+				DCF9BA9A20C47C05003C6D04 /* SettingsVC.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -96,8 +96,8 @@
 			children = (
 				DC91EB4B20B849B700CC31B8 /* IntroductionVC.swift */,
 				DC91EB4D20B849CC00CC31B8 /* LoginWithEmailVC.swift */,
-				DC91EB5320B8932C00CC31B8 /* JournalVC.swift */,
 				DCC1CA7F20BC73C700D76A65 /* NewUserVC.swift */,
+				DC91EB5320B8932C00CC31B8 /* JournalVC.swift */,
 				DCF9BA9A20C47C05003C6D04 /* SettingsVC.swift */,
 			);
 			name = ViewController;

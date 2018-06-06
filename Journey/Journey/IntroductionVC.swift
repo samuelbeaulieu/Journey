@@ -34,6 +34,10 @@ class IntroductionVC: UIViewController {
         emailButton.layer.cornerRadius = 25
         emailButton.layer.borderWidth = 1
         emailButton.layer.borderColor = UIColor.lightGray.cgColor
+        emailButton.layer.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5).cgColor
+        
+        //zPosition
+        
         
         //Style for the navigation bar
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")

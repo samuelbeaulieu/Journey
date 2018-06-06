@@ -18,6 +18,8 @@ class LoginWithEmailVC: UIViewController {
     var emailVerification:Bool = false
     var passwordVerification:Bool = false
     
+    var keyboardActive:Bool = false
+    
     var userCDData:[User] = []
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -25,103 +27,55 @@ class LoginWithEmailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        printExistingEmail()
         //Style for the continue button
         continueButton.layer.cornerRadius = 25
         continueButton.layer.borderWidth = 1
         continueButton.layer.borderColor = UIColor.lightGray.cgColor
         
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
-        emailAddressInput.addTarget(self, action: #selector(textFieldDidChange), for:.editingChanged)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    @objc func textFieldDidChange(){
-        if someEntityExists(email: self.emailAddressInput.text!) == false {
-            emailAddressInput.backgroundColor = UIColor(red:0.00, green:1.00, blue:0.00, alpha:0.1)
-            //performSegue(withIdentifier: "loginWithEmailToNewUser", sender: self)
-        } else {
-            emailAddressInput.backgroundColor = UIColor(red:1.00, green:0.00, blue:0.00, alpha:0.1)
-            
-            //performSegue(withIdentifier: "loginWithEmailToJournal", sender: self)
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        //Keyboard
+        view.addGestureRecognizer(tap)
+        
+        if keyboardActive == false {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         }
-        print(emailAddressInput.text)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     @IBAction func loginContinue(_ sender: Any) {
-        if emailAddressInput.text != "" && passwordInput.text != "" {
-            if someEntityExists(email: self.emailAddressInput.text!) == false {
-                performSegue(withIdentifier: "loginWithEmailToNewUser", sender: self)
-            } else {
-                performSegue(withIdentifier: "loginWithEmailToJournal", sender: self)
-            }
-        }
+        dismissKeyboard()
+        performSegue(withIdentifier: "loginWithEmailToNewUser", sender: self)
     }
     
-    func saveToCoreData() {
-        let context = self.appDelegate.persistentContainer.viewContext
-        
-        let userCD = User(context: context)
-        userCD.email = self.emailAddressInput.text!
-        userCD.password = self.passwordInput.text!
-        userCD.name = ""//To be completed on the next view
-        userCD.image = nil//To be completed on the next view
-        userCD.facebook = false
-        userCD.location = false//Default Value
-        userCD.time = true//Default Value
-        userCD.isNew = true
-        userCD.creationDate = Date()
-        
-        self.appDelegate.saveContext()
-        print("User : \n\tCreation Date : \(userCD.creationDate)\n\tEmail : \(userCD.email)\n\tPassword : \(userCD.password)\n\tName : \(userCD.name)\n\tImage : \(userCD.image)\n\tFacebook : \(userCD.facebook)\n\tLocation : \(userCD.location)\n\tTime : \(userCD.time)\n\tisNew : \(userCD.isNew)")
-    }
-    
-    func someEntityExists(email: String) -> Bool {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        let predicate = NSPredicate(format: "email == %@", self.emailAddressInput.text!)
-        request.predicate = predicate
-        request.fetchLimit = 1
-        
-        do{
-            let context = self.appDelegate.persistentContainer.viewContext
-            let count = try context.count(for: request)
-            if(count == 0){
-                // no matching object
-                print("no present")
-                return false
-            }
-            else{
-                // at least one matching object exists
-                print("one matching item found")
-                return true
-            }
-        }
-        catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        return true
-    }
-    
-    func printExistingEmail() {
-        let context = self.appDelegate.persistentContainer.viewContext
-
-        do {
-            self.userCDData = try context.fetch(User.fetchRequest())
-            for item in self.userCDData {
-                print(item.email as! String)
-            }
-        } catch {
-            print("Fetching Email Failed")
-        }
+    // MARK: - Keyboard
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+        keyboardActive = false
     }
 
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardActive == false {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+            keyboardActive = true
+        }
+    }
     
+    //Move the view to previous state after keyboard close
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y += keyboardSize.height
+        }
+    }
     
     /*
      // MARK: - Navigation

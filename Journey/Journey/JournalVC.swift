@@ -11,6 +11,8 @@ import UIKit
 class JournalVC: UIViewController {
     @IBOutlet weak var navigationBarShadow: UIView!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Creating the gradient for the Facebook button
@@ -25,13 +27,13 @@ class JournalVC: UIViewController {
         gradient.frame = navigationBarShadow.bounds
         navigationBarShadow.layer.addSublayer(gradient)
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

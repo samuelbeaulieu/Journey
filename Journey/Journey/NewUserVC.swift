@@ -9,100 +9,124 @@
 import UIKit
 import Photos
 
-class NewUserVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var imagePicked: UIImageView!
+    @IBOutlet weak var editPhotoButton: UIButton!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var nameInput: UITextField!
     
-    @IBOutlet weak var imagePlaceHolder: UIImageView!
+    var pictureExist:Bool = false
     
-    let galleryPicker = UIImagePickerController()
-    // create a method to fetch your photo asset and return an UIImage on completion
-    func fetchImage(asset: PHAsset, completion: @escaping  (UIImage) -> ()) {
-        let options = PHImageRequestOptions()
-        options.version = .original
-        PHImageManager.default().requestImageData(for: asset, options: options) {
-            data, uti, orientation, info in
-            guard let data = data, let image = UIImage(data: data) else { return }
-            self.imagePicked.contentMode = .scaleAspectFill
-            self.imagePicked.image = image
-            print("image size:", image.size)
-            completion(image)
-        }
-    }
+    let imagePicker = UIImagePickerController()
+    
+    
+    var userCDData:[User] = []
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profilePicture.layer.cornerRadius = profilePicture.frame.width / 2
+        profilePicture.layer.borderWidth = 1
+        profilePicture.layer.borderColor = UIColor.lightGray.cgColor
         
-        imagePlaceHolder.layer.cornerRadius = imagePlaceHolder.frame.width / 2
-        imagePlaceHolder.layer.borderWidth = 1
-        imagePlaceHolder.layer.borderColor = UIColor.lightGray.cgColor
+        profilePicture.layer.masksToBounds = false
+        profilePicture.clipsToBounds = true
         
-        // lets add a selector to when the user taps the image
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(openPicker))
-//        imagePicked.isUserInteractionEnabled = true
-//        imagePicked.addGestureRecognizer(tap)
-    }
-    // opens the image picker for photo library
-    @objc func openPicker() {
-        galleryPicker.sourceType = .photoLibrary
-        galleryPicker.delegate = self
-        present(galleryPicker, animated: true)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // check if there is an url saved in the user defaults
-        // and fetch its first object (PHAsset)
-        if let url = UserDefaults.standard.url(forKey: "assetURL"),
-            let asset = PHAsset.fetchAssets(withALAssetURLs: [url], options: PHFetchOptions()).firstObject {
-            fetchImage(asset: asset) {
-                        self.imagePicked.image = $0
-                    }
-                }
+        imagePicker.delegate = self
         
     }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
-        print("canceled")
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let url = info[UIImagePickerControllerReferenceURL] as? URL,
-            let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            UserDefaults.standard.set(url, forKey: "assetURL")
-            print("url saved")
-            self.imagePicked.image = image
-        }
-        dismiss(animated: true)
-    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profilePicture.image = image
+            imagePicker.dismiss(animated: true, completion: nil)
+            pictureExist = true
+        } else {
+            print("There was an error picking the image")
+        }
+    }
     
-    @IBAction func choosePhoto(_ sender: Any) {
-        let alertController = UIAlertController(title: "Action Sheet", message: "What would you like to do?", preferredStyle: .actionSheet)
+    @IBAction func editPhoto(_ sender: UIButton) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let sendButton = UIAlertAction(title: "Send now", style: .default, handler: { (action) -> Void in
-            print("Send button tapped")
-            self.openPicker()
+        let takeNewPhotoButton = UIAlertAction(title: "Take a new photo", style: .default, handler: { (action) -> Void in
+            print("Take a new photo button tapped")
+            self.openCamera()
         })
         
-        let  deleteButton = UIAlertAction(title: "Delete forever", style: .destructive, handler: { (action) -> Void in
-            print("Delete button tapped")
+        alertController.addAction(takeNewPhotoButton)
+        
+        let chooseExistingPhotoButton = UIAlertAction(title: "Choose from camera roll", style: .default, handler: { (action) -> Void in
+            print("Choose from camera roll button tapped")
+            self.openLibrary()
         })
+        
+        alertController.addAction(chooseExistingPhotoButton)
+        
+        if pictureExist == true {
+            let  deleteButton = UIAlertAction(title: "Remove existing photo", style: .destructive, handler: { (action) -> Void in
+                print("Remove existing photo button tapped")
+                self.profilePicture.image = UIImage(named: "ImagePlaceholder")
+                self.pictureExist = false
+            })
+            
+            alertController.addAction(deleteButton)
+        }
+        
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
             print("Cancel button tapped")
         })
-        
-        
-        alertController.addAction(sendButton)
-        alertController.addAction(deleteButton)
         alertController.addAction(cancelButton)
         
         self.navigationController!.present(alertController, animated: true, completion: nil)
     }
+    
+    func openCamera() {
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        
+        present(imagePicker, animated: true, completion: nil)
+
+    }
+    
+    func openLibrary() {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveProfile(_ sender: Any) {
+        saveToCoreData()
+    }
+    
+    func saveToCoreData() {
+        let context = self.appDelegate.persistentContainer.viewContext
+        
+        let userCD = User(context: context)
+        userCD.email = self.appDelegate.email
+        userCD.password = self.appDelegate.password
+        userCD.name = self.nameInput.text//To be completed on the next view
+        userCD.image = nil//To be completed on the next view
+        userCD.facebook = false
+        userCD.location = false//Default Value
+        userCD.time = true//Default Value
+        userCD.isNew = true
+        userCD.creationDate = Date()
+        
+        self.appDelegate.saveContext()
+        print("User : \n\tCreation Date : \(userCD.creationDate)\n\tEmail : \(userCD.email)\n\tPassword : \(userCD.password)\n\tName : \(userCD.name)\n\tImage : \(userCD.image)\n\tFacebook : \(userCD.facebook)\n\tLocation : \(userCD.location)\n\tTime : \(userCD.time)\n\tisNew : \(userCD.isNew)")
+    }
+    
+    
     
     /*
     // MARK: - Navigation

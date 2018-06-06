@@ -2,7 +2,7 @@
 //  SettingsVC.swift
 //  Journey
 //
-//  Created by Samuel Beaulieu on 2018-06-03.
+//  Created by Samuel Beaulieu on 2018-06-06.
 //  Copyright © 2018 Samuel Beaulieu. All rights reserved.
 //
 
@@ -12,7 +12,6 @@ class SettingsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Settings"
 
         // Do any additional setup after loading the view.
     }

@@ -2,16 +2,16 @@
 //  IntroductionVC.swift
 //  Journey
 //
-//  Created by Samuel Beaulieu on 2018-05-25.
+//  Created by Samuel Beaulieu on 2018-06-06.
 //  Copyright © 2018 Samuel Beaulieu. All rights reserved.
 //
 
 import UIKit
 
 class IntroductionVC: UIViewController {
-    //References
-    @IBOutlet weak var facebookButton: UIButton!
-    @IBOutlet weak var emailButton: UIButton!
+    
+    @IBOutlet weak var facebookBtn: UIButton!
+    @IBOutlet weak var emailBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +25,16 @@ class IntroductionVC: UIViewController {
         gradient.colors = [colorLeft, colorRight]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradient.frame = facebookButton.bounds
+        gradient.frame = facebookBtn.bounds
         gradient.cornerRadius = 25
-        facebookButton.layer.cornerRadius = 25
-        facebookButton.layer.addSublayer(gradient)
+        facebookBtn.layer.cornerRadius = 25
+        facebookBtn.layer.addSublayer(gradient)
         
         //Style for the email button
-        emailButton.layer.cornerRadius = 25
-        emailButton.layer.borderWidth = 1
-        emailButton.layer.borderColor = UIColor.lightGray.cgColor
-        emailButton.layer.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5).cgColor
-        
-        //zPosition
-        
+        emailBtn.layer.cornerRadius = 25
+        emailBtn.layer.borderWidth = 1
+        emailBtn.layer.borderColor = UIColor.lightGray.cgColor
+        emailBtn.layer.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5).cgColor
         
         //Style for the navigation bar
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -54,23 +51,7 @@ class IntroductionVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
+
 }
 
-// MARK: - Links for the code I needed help with
-/*
- 1. Hide the navigation controller on the introduction view & Show the navigation controller on the Login With Email view. https://stackoverflow.com/a/45587555
- 2. Remove the bottom border on the navigation controller. https://stackoverflow.com/a/38745391
- 3.
- 4.
- 5.
- 6.
- 7.
- 8.
- 9.
- 10.
- */

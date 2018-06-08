@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class IntroductionVC: UIViewController {
     
     @IBOutlet weak var facebookBtn: UIButton!
     @IBOutlet weak var emailBtn: UIButton!
+    @IBOutlet weak var newUserBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,11 @@ class IntroductionVC: UIViewController {
         emailBtn.layer.borderColor = UIColor.lightGray.cgColor
         emailBtn.layer.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.5).cgColor
         
+        //Style for the newUserBtn button
+        newUserBtn.layer.cornerRadius = 15
+        newUserBtn.layer.borderWidth = 1
+        newUserBtn.layer.borderColor = UIColor.lightGray.cgColor
+        
         //Style for the navigation bar
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
@@ -50,8 +58,5 @@ class IntroductionVC: UIViewController {
         super.viewWillDisappear(true)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
-
-
 }
 

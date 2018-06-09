@@ -2,24 +2,18 @@
 //  AppDelegate.swift
 //  Journey
 //
-//  Created by Samuel Beaulieu on 2018-06-06.
+//  Created by Samuel Beaulieu on 2018-06-08.
 //  Copyright © 2018 Samuel Beaulieu. All rights reserved.
 //
 
 import UIKit
-import Firebase
-//import FirebaseStorage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-//    let storage = Storage.storage().reference(withPath: "\((Auth.auth().currentUser?.uid)!)/")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        FirebaseApp.configure()
         return true
     }
 
@@ -44,7 +38,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

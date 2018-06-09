@@ -7,133 +7,104 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		552F1D5D3853BA395A7FEFCB /* Pods_Journey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D0ABED05F87DE8CAC1CFA /* Pods_Journey.framework */; };
-		DC88B49720C85CEF00E89DFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88B49620C85CEF00E89DFF /* AppDelegate.swift */; };
-		DC88B49920C85CEF00E89DFF /* IntroductionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88B49820C85CEF00E89DFF /* IntroductionVC.swift */; };
-		DC88B49C20C85CEF00E89DFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC88B49A20C85CEF00E89DFF /* Main.storyboard */; };
-		DC88B49E20C85CF000E89DFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC88B49D20C85CF000E89DFF /* Assets.xcassets */; };
-		DC88B4A120C85CF000E89DFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC88B49F20C85CF000E89DFF /* LaunchScreen.storyboard */; };
-		DC88B4AB20C8642F00E89DFF /* LoginWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88B4AA20C8642F00E89DFF /* LoginWithEmailVC.swift */; };
-		DC88B4AF20C8648900E89DFF /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88B4AE20C8648900E89DFF /* SettingsVC.swift */; };
-		DC88B4B120C864A300E89DFF /* SignupWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88B4B020C864A300E89DFF /* SignupWithEmailVC.swift */; };
-		DCC90ADC20C8701300C4551D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCC90ADB20C8701300C4551D /* GoogleService-Info.plist */; };
-		DCC90ADE20C87EFA00C4551D /* JournalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC90ADD20C87EFA00C4551D /* JournalTVC.swift */; };
-		DCC90AE020C87F1100C4551D /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC90ADF20C87F1100C4551D /* NewPostVC.swift */; };
+		DC7AEB6020CB4CF900BD2A00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */; };
+		DC7AEB6520CB4CF900BD2A00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6320CB4CF900BD2A00 /* Main.storyboard */; };
+		DC7AEB6720CB4CFB00BD2A00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6620CB4CFB00BD2A00 /* Assets.xcassets */; };
+		DC7AEB6A20CB4CFB00BD2A00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6820CB4CFB00BD2A00 /* LaunchScreen.storyboard */; };
+		DC7AEB7620CB4F9000BD2A00 /* IntroductionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7520CB4F9000BD2A00 /* IntroductionVC.swift */; };
+		DC7AEB7820CB4FDF00BD2A00 /* JournalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7720CB4FDF00BD2A00 /* JournalTVC.swift */; };
+		DC7AEB7A20CB508700BD2A00 /* LoginWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7920CB508700BD2A00 /* LoginWithEmailVC.swift */; };
+		DC7AEB7C20CB50C100BD2A00 /* RegisterWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7B20CB50C100BD2A00 /* RegisterWithEmailVC.swift */; };
+		DC7AEB7E20CB50D600BD2A00 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7D20CB50D600BD2A00 /* SettingsVC.swift */; };
+		DC7AEB8020CB50FA00BD2A00 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		171D0ABED05F87DE8CAC1CFA /* Pods_Journey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D4DA839E6D6D3D39585ED22 /* Pods-Journey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.debug.xcconfig"; sourceTree = "<group>"; };
-		A4E29CB52EA2F702805163C8 /* Pods-Journey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.release.xcconfig"; sourceTree = "<group>"; };
-		DC88B49320C85CEF00E89DFF /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC88B49620C85CEF00E89DFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC88B49820C85CEF00E89DFF /* IntroductionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionVC.swift; sourceTree = "<group>"; };
-		DC88B49B20C85CEF00E89DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DC88B49D20C85CF000E89DFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DC88B4A020C85CF000E89DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DC88B4A220C85CF000E89DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC88B4AA20C8642F00E89DFF /* LoginWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailVC.swift; sourceTree = "<group>"; };
-		DC88B4AE20C8648900E89DFF /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		DC88B4B020C864A300E89DFF /* SignupWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupWithEmailVC.swift; sourceTree = "<group>"; };
-		DCC90ADB20C8701300C4551D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DCC90ADD20C87EFA00C4551D /* JournalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTVC.swift; sourceTree = "<group>"; };
-		DCC90ADF20C87F1100C4551D /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
+		DC7AEB5C20CB4CF900BD2A00 /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DC7AEB6420CB4CF900BD2A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DC7AEB6620CB4CFB00BD2A00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC7AEB6920CB4CFB00BD2A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DC7AEB6B20CB4CFB00BD2A00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC7AEB7520CB4F9000BD2A00 /* IntroductionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionVC.swift; sourceTree = "<group>"; };
+		DC7AEB7720CB4FDF00BD2A00 /* JournalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTVC.swift; sourceTree = "<group>"; };
+		DC7AEB7920CB508700BD2A00 /* LoginWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailVC.swift; sourceTree = "<group>"; };
+		DC7AEB7B20CB50C100BD2A00 /* RegisterWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWithEmailVC.swift; sourceTree = "<group>"; };
+		DC7AEB7D20CB50D600BD2A00 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DC88B49020C85CEF00E89DFF /* Frameworks */ = {
+		DC7AEB5920CB4CF900BD2A00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				552F1D5D3853BA395A7FEFCB /* Pods_Journey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		97AFB3D4F7683A196BACCD8B /* Pods */ = {
+		DC7AEB5320CB4CF900BD2A00 = {
 			isa = PBXGroup;
 			children = (
-				8D4DA839E6D6D3D39585ED22 /* Pods-Journey.debug.xcconfig */,
-				A4E29CB52EA2F702805163C8 /* Pods-Journey.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		DC88B48A20C85CEF00E89DFF = {
-			isa = PBXGroup;
-			children = (
-				DC88B49520C85CEF00E89DFF /* Journey */,
-				DC88B49420C85CEF00E89DFF /* Products */,
-				97AFB3D4F7683A196BACCD8B /* Pods */,
-				F28E5B3EF7F7FE3FAD3B1B70 /* Frameworks */,
+				DC7AEB5E20CB4CF900BD2A00 /* Journey */,
+				DC7AEB5D20CB4CF900BD2A00 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DC88B49420C85CEF00E89DFF /* Products */ = {
+		DC7AEB5D20CB4CF900BD2A00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC88B49320C85CEF00E89DFF /* Journey.app */,
+				DC7AEB5C20CB4CF900BD2A00 /* Journey.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DC88B49520C85CEF00E89DFF /* Journey */ = {
+		DC7AEB5E20CB4CF900BD2A00 /* Journey */ = {
 			isa = PBXGroup;
 			children = (
-				DCC90ADB20C8701300C4551D /* GoogleService-Info.plist */,
-				DC88B4A220C85CF000E89DFF /* Info.plist */,
-				DC88B49D20C85CF000E89DFF /* Assets.xcassets */,
-				DC88B49620C85CEF00E89DFF /* AppDelegate.swift */,
-				DC88B4A820C863DC00E89DFF /* Storyboards */,
-				DC88B4A920C863E800E89DFF /* ViewControllers */,
+				DC7AEB6B20CB4CFB00BD2A00 /* Info.plist */,
+				DC7AEB6620CB4CFB00BD2A00 /* Assets.xcassets */,
+				DC7AEB7120CB4E6B00BD2A00 /* Storyboard */,
+				DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */,
+				DC7AEB7420CB4F4A00BD2A00 /* ViewController */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
 		};
-		DC88B4A820C863DC00E89DFF /* Storyboards */ = {
+		DC7AEB7120CB4E6B00BD2A00 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DC88B49F20C85CF000E89DFF /* LaunchScreen.storyboard */,
-				DC88B49A20C85CEF00E89DFF /* Main.storyboard */,
+				DC7AEB6820CB4CFB00BD2A00 /* LaunchScreen.storyboard */,
+				DC7AEB6320CB4CF900BD2A00 /* Main.storyboard */,
 			);
-			path = Storyboards;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		DC88B4A920C863E800E89DFF /* ViewControllers */ = {
+		DC7AEB7420CB4F4A00BD2A00 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DC88B49820C85CEF00E89DFF /* IntroductionVC.swift */,
-				DC88B4AA20C8642F00E89DFF /* LoginWithEmailVC.swift */,
-				DC88B4B020C864A300E89DFF /* SignupWithEmailVC.swift */,
-				DCC90ADD20C87EFA00C4551D /* JournalTVC.swift */,
-				DC88B4AE20C8648900E89DFF /* SettingsVC.swift */,
-				DCC90ADF20C87F1100C4551D /* NewPostVC.swift */,
+				DC7AEB7520CB4F9000BD2A00 /* IntroductionVC.swift */,
+				DC7AEB7920CB508700BD2A00 /* LoginWithEmailVC.swift */,
+				DC7AEB7B20CB50C100BD2A00 /* RegisterWithEmailVC.swift */,
+				DC7AEB7720CB4FDF00BD2A00 /* JournalTVC.swift */,
+				DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */,
+				DC7AEB7D20CB50D600BD2A00 /* SettingsVC.swift */,
 			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		F28E5B3EF7F7FE3FAD3B1B70 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				171D0ABED05F87DE8CAC1CFA /* Pods_Journey.framework */,
-			);
-			name = Frameworks;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DC88B49220C85CEF00E89DFF /* Journey */ = {
+		DC7AEB5B20CB4CF900BD2A00 /* Journey */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC88B4A520C85CF000E89DFF /* Build configuration list for PBXNativeTarget "Journey" */;
+			buildConfigurationList = DC7AEB6E20CB4CFB00BD2A00 /* Build configuration list for PBXNativeTarget "Journey" */;
 			buildPhases = (
-				E2426E1D3D6B3443AEB478FF /* [CP] Check Pods Manifest.lock */,
-				DC88B48F20C85CEF00E89DFF /* Sources */,
-				DC88B49020C85CEF00E89DFF /* Frameworks */,
-				DC88B49120C85CEF00E89DFF /* Resources */,
-				4CEF3C7A9F7BB3A826D9902C /* [CP] Embed Pods Frameworks */,
+				DC7AEB5820CB4CF900BD2A00 /* Sources */,
+				DC7AEB5920CB4CF900BD2A00 /* Frameworks */,
+				DC7AEB5A20CB4CF900BD2A00 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -141,25 +112,25 @@
 			);
 			name = Journey;
 			productName = Journey;
-			productReference = DC88B49320C85CEF00E89DFF /* Journey.app */;
+			productReference = DC7AEB5C20CB4CF900BD2A00 /* Journey.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DC88B48B20C85CEF00E89DFF /* Project object */ = {
+		DC7AEB5420CB4CF900BD2A00 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Samuel Beaulieu";
 				TargetAttributes = {
-					DC88B49220C85CEF00E89DFF = {
+					DC7AEB5B20CB4CF900BD2A00 = {
 						CreatedOnToolsVersion = 9.4;
 					};
 				};
 			};
-			buildConfigurationList = DC88B48E20C85CEF00E89DFF /* Build configuration list for PBXProject "Journey" */;
+			buildConfigurationList = DC7AEB5720CB4CF900BD2A00 /* Build configuration list for PBXProject "Journey" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -167,105 +138,59 @@
 				en,
 				Base,
 			);
-			mainGroup = DC88B48A20C85CEF00E89DFF;
-			productRefGroup = DC88B49420C85CEF00E89DFF /* Products */;
+			mainGroup = DC7AEB5320CB4CF900BD2A00;
+			productRefGroup = DC7AEB5D20CB4CF900BD2A00 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DC88B49220C85CEF00E89DFF /* Journey */,
+				DC7AEB5B20CB4CF900BD2A00 /* Journey */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DC88B49120C85CEF00E89DFF /* Resources */ = {
+		DC7AEB5A20CB4CF900BD2A00 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC88B4A120C85CF000E89DFF /* LaunchScreen.storyboard in Resources */,
-				DCC90ADC20C8701300C4551D /* GoogleService-Info.plist in Resources */,
-				DC88B49E20C85CF000E89DFF /* Assets.xcassets in Resources */,
-				DC88B49C20C85CEF00E89DFF /* Main.storyboard in Resources */,
+				DC7AEB6A20CB4CFB00BD2A00 /* LaunchScreen.storyboard in Resources */,
+				DC7AEB6720CB4CFB00BD2A00 /* Assets.xcassets in Resources */,
+				DC7AEB6520CB4CF900BD2A00 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4CEF3C7A9F7BB3A826D9902C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Journey/Pods-Journey-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Journey/Pods-Journey-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2426E1D3D6B3443AEB478FF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Journey-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		DC88B48F20C85CEF00E89DFF /* Sources */ = {
+		DC7AEB5820CB4CF900BD2A00 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCC90AE020C87F1100C4551D /* NewPostVC.swift in Sources */,
-				DC88B4AB20C8642F00E89DFF /* LoginWithEmailVC.swift in Sources */,
-				DCC90ADE20C87EFA00C4551D /* JournalTVC.swift in Sources */,
-				DC88B4B120C864A300E89DFF /* SignupWithEmailVC.swift in Sources */,
-				DC88B49920C85CEF00E89DFF /* IntroductionVC.swift in Sources */,
-				DC88B49720C85CEF00E89DFF /* AppDelegate.swift in Sources */,
-				DC88B4AF20C8648900E89DFF /* SettingsVC.swift in Sources */,
+				DC7AEB7620CB4F9000BD2A00 /* IntroductionVC.swift in Sources */,
+				DC7AEB7820CB4FDF00BD2A00 /* JournalTVC.swift in Sources */,
+				DC7AEB6020CB4CF900BD2A00 /* AppDelegate.swift in Sources */,
+				DC7AEB7A20CB508700BD2A00 /* LoginWithEmailVC.swift in Sources */,
+				DC7AEB8020CB50FA00BD2A00 /* PostVC.swift in Sources */,
+				DC7AEB7C20CB50C100BD2A00 /* RegisterWithEmailVC.swift in Sources */,
+				DC7AEB7E20CB50D600BD2A00 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DC88B49A20C85CEF00E89DFF /* Main.storyboard */ = {
+		DC7AEB6320CB4CF900BD2A00 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DC88B49B20C85CEF00E89DFF /* Base */,
+				DC7AEB6420CB4CF900BD2A00 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		DC88B49F20C85CF000E89DFF /* LaunchScreen.storyboard */ = {
+		DC7AEB6820CB4CFB00BD2A00 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DC88B4A020C85CF000E89DFF /* Base */,
+				DC7AEB6920CB4CFB00BD2A00 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -273,7 +198,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		DC88B4A320C85CF000E89DFF /* Debug */ = {
+		DC7AEB6C20CB4CFB00BD2A00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -333,7 +258,7 @@
 			};
 			name = Debug;
 		};
-		DC88B4A420C85CF000E89DFF /* Release */ = {
+		DC7AEB6D20CB4CFB00BD2A00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -387,9 +312,8 @@
 			};
 			name = Release;
 		};
-		DC88B4A620C85CF000E89DFF /* Debug */ = {
+		DC7AEB6F20CB4CFB00BD2A00 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D4DA839E6D6D3D39585ED22 /* Pods-Journey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -406,9 +330,8 @@
 			};
 			name = Debug;
 		};
-		DC88B4A720C85CF000E89DFF /* Release */ = {
+		DC7AEB7020CB4CFB00BD2A00 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4E29CB52EA2F702805163C8 /* Pods-Journey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -428,25 +351,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DC88B48E20C85CEF00E89DFF /* Build configuration list for PBXProject "Journey" */ = {
+		DC7AEB5720CB4CF900BD2A00 /* Build configuration list for PBXProject "Journey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC88B4A320C85CF000E89DFF /* Debug */,
-				DC88B4A420C85CF000E89DFF /* Release */,
+				DC7AEB6C20CB4CFB00BD2A00 /* Debug */,
+				DC7AEB6D20CB4CFB00BD2A00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC88B4A520C85CF000E89DFF /* Build configuration list for PBXNativeTarget "Journey" */ = {
+		DC7AEB6E20CB4CFB00BD2A00 /* Build configuration list for PBXNativeTarget "Journey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC88B4A620C85CF000E89DFF /* Debug */,
-				DC88B4A720C85CF000E89DFF /* Release */,
+				DC7AEB6F20CB4CFB00BD2A00 /* Debug */,
+				DC7AEB7020CB4CFB00BD2A00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DC88B48B20C85CEF00E89DFF /* Project object */;
+	rootObject = DC7AEB5420CB4CF900BD2A00 /* Project object */;
 }

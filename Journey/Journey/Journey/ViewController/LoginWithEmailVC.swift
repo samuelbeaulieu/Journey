@@ -10,7 +10,15 @@ import UIKit
 
 class LoginWithEmailVC: UIViewController {
 
+    @IBOutlet weak var emailInput: UITextField!
+    @IBOutlet weak var passwordInput: UITextField!
+    @IBOutlet weak var submitLoginBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func submitLogin(_ sender: Any) {
+        
     }
 }

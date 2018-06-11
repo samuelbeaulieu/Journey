@@ -9,6 +9,15 @@
 import UIKit
 
 class PostVC: UIViewController {
+    
+    //References
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var postTextInput: UITextView!
+    @IBOutlet weak var characterCount: UILabel!
+    @IBOutlet weak var postPhoto: UIImageView!
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    //Variables
 
     override func viewDidLoad() {
         super.viewDidLoad()

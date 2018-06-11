@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsVC: UIViewController {
 
+    //References
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var profilePhotoShadow: UIImageView!
     @IBOutlet weak var editProfileBtn: UIButton!
@@ -17,6 +18,8 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var locationAccessSwitch: UISwitch!
     @IBOutlet weak var timeFormatSegment: UISegmentedControl!
     @IBOutlet weak var versionLabel: UILabel!
+    
+    //Variables
     
     override func viewDidLoad() {
         super.viewDidLoad()

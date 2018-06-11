@@ -10,9 +10,12 @@ import UIKit
 
 class LoginWithEmailVC: UIViewController {
 
+    //References
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var submitLoginBtn: UIButton!
+    
+    //Variables
     
     override func viewDidLoad() {
         super.viewDidLoad()

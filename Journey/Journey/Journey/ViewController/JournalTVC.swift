@@ -10,8 +10,11 @@ import UIKit
 
 class JournalTVC: UITableViewController {
     
+    //References
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var displayNameLabel: UILabel!
+    
+    //Variables
     
     override func viewDidLoad() {
         super.viewDidLoad()

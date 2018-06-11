@@ -10,9 +10,12 @@ import UIKit
 
 class IntroductionVC: UIViewController {
 
+    //References
     @IBOutlet weak var facebookBtn: UIButton!
     @IBOutlet weak var emailBtn: UIButton!
     @IBOutlet weak var newUserBtn: UIButton!
+    
+    //Variables
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,13 +7,27 @@
 //
 
 import UIKit
+import Firebase
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var connectedWithEmail:Bool = false
+    var connectedWithFacebook:Bool = false
+    
+    //This func is part 5.2 on facebook
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(_: application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        return handled
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        //Next line is part 5.1 on facebook
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
 

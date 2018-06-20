@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6D74AC077760FB5CE804823 /* Pods_Journey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3F429C808C8186AAA1148E /* Pods_Journey.framework */; };
 		DC7AEB6020CB4CF900BD2A00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */; };
 		DC7AEB6520CB4CF900BD2A00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6320CB4CF900BD2A00 /* Main.storyboard */; };
 		DC7AEB6720CB4CFB00BD2A00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6620CB4CFB00BD2A00 /* Assets.xcassets */; };
@@ -14,12 +15,15 @@
 		DC7AEB7620CB4F9000BD2A00 /* IntroductionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7520CB4F9000BD2A00 /* IntroductionVC.swift */; };
 		DC7AEB7820CB4FDF00BD2A00 /* JournalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7720CB4FDF00BD2A00 /* JournalTVC.swift */; };
 		DC7AEB7A20CB508700BD2A00 /* LoginWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7920CB508700BD2A00 /* LoginWithEmailVC.swift */; };
-		DC7AEB7C20CB50C100BD2A00 /* RegisterWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7B20CB50C100BD2A00 /* RegisterWithEmailVC.swift */; };
 		DC7AEB7E20CB50D600BD2A00 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7D20CB50D600BD2A00 /* SettingsVC.swift */; };
 		DC7AEB8020CB50FA00BD2A00 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */; };
+		DC9BEAE020CED23000E7EC1F /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BEADF20CED23000E7EC1F /* NewUserVC.swift */; };
+		DCA0148B20D2BA77009DFFE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA0148A20D2BA77009DFFE0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A3F429C808C8186AAA1148E /* Pods_Journey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBCDE41C9822D49BE0681998 /* Pods-Journey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.debug.xcconfig"; sourceTree = "<group>"; };
 		DC7AEB5C20CB4CF900BD2A00 /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC7AEB6420CB4CF900BD2A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,9 +33,11 @@
 		DC7AEB7520CB4F9000BD2A00 /* IntroductionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionVC.swift; sourceTree = "<group>"; };
 		DC7AEB7720CB4FDF00BD2A00 /* JournalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTVC.swift; sourceTree = "<group>"; };
 		DC7AEB7920CB508700BD2A00 /* LoginWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailVC.swift; sourceTree = "<group>"; };
-		DC7AEB7B20CB50C100BD2A00 /* RegisterWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWithEmailVC.swift; sourceTree = "<group>"; };
 		DC7AEB7D20CB50D600BD2A00 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
+		DC9BEADF20CED23000E7EC1F /* NewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
+		DCA0148A20D2BA77009DFFE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF1C14135F30FD1A2F3484E1 /* Pods-Journey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +45,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6D74AC077760FB5CE804823 /* Pods_Journey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6005146F8FB9A1C6A9FCC0FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A3F429C808C8186AAA1148E /* Pods_Journey.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7EAA595B6E3AC1900DCD66D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DBCDE41C9822D49BE0681998 /* Pods-Journey.debug.xcconfig */,
+				DF1C14135F30FD1A2F3484E1 /* Pods-Journey.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DC7AEB5320CB4CF900BD2A00 = {
 			isa = PBXGroup;
 			children = (
 				DC7AEB5E20CB4CF900BD2A00 /* Journey */,
 				DC7AEB5D20CB4CF900BD2A00 /* Products */,
+				7EAA595B6E3AC1900DCD66D0 /* Pods */,
+				6005146F8FB9A1C6A9FCC0FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +90,7 @@
 		DC7AEB5E20CB4CF900BD2A00 /* Journey */ = {
 			isa = PBXGroup;
 			children = (
+				DCA0148A20D2BA77009DFFE0 /* GoogleService-Info.plist */,
 				DC7AEB6B20CB4CFB00BD2A00 /* Info.plist */,
 				DC7AEB6620CB4CFB00BD2A00 /* Assets.xcassets */,
 				DC7AEB7120CB4E6B00BD2A00 /* Storyboard */,
@@ -87,7 +114,7 @@
 			children = (
 				DC7AEB7520CB4F9000BD2A00 /* IntroductionVC.swift */,
 				DC7AEB7920CB508700BD2A00 /* LoginWithEmailVC.swift */,
-				DC7AEB7B20CB50C100BD2A00 /* RegisterWithEmailVC.swift */,
+				DC9BEADF20CED23000E7EC1F /* NewUserVC.swift */,
 				DC7AEB7720CB4FDF00BD2A00 /* JournalTVC.swift */,
 				DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */,
 				DC7AEB7D20CB50D600BD2A00 /* SettingsVC.swift */,
@@ -102,9 +129,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC7AEB6E20CB4CFB00BD2A00 /* Build configuration list for PBXNativeTarget "Journey" */;
 			buildPhases = (
+				79D793AEED116560EA9C9AF4 /* [CP] Check Pods Manifest.lock */,
 				DC7AEB5820CB4CF900BD2A00 /* Sources */,
 				DC7AEB5920CB4CF900BD2A00 /* Frameworks */,
 				DC7AEB5A20CB4CF900BD2A00 /* Resources */,
+				4636A8A3BB8955970B52F349 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,12 +183,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC7AEB6A20CB4CFB00BD2A00 /* LaunchScreen.storyboard in Resources */,
+				DCA0148B20D2BA77009DFFE0 /* GoogleService-Info.plist in Resources */,
 				DC7AEB6720CB4CFB00BD2A00 /* Assets.xcassets in Resources */,
 				DC7AEB6520CB4CF900BD2A00 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4636A8A3BB8955970B52F349 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Journey/Pods-Journey-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Journey/Pods-Journey-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79D793AEED116560EA9C9AF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Journey-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC7AEB5820CB4CF900BD2A00 /* Sources */ = {
@@ -170,8 +249,8 @@
 				DC7AEB7820CB4FDF00BD2A00 /* JournalTVC.swift in Sources */,
 				DC7AEB6020CB4CF900BD2A00 /* AppDelegate.swift in Sources */,
 				DC7AEB7A20CB508700BD2A00 /* LoginWithEmailVC.swift in Sources */,
+				DC9BEAE020CED23000E7EC1F /* NewUserVC.swift in Sources */,
 				DC7AEB8020CB50FA00BD2A00 /* PostVC.swift in Sources */,
-				DC7AEB7C20CB50C100BD2A00 /* RegisterWithEmailVC.swift in Sources */,
 				DC7AEB7E20CB50D600BD2A00 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +393,7 @@
 		};
 		DC7AEB6F20CB4CFB00BD2A00 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBCDE41C9822D49BE0681998 /* Pods-Journey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -323,7 +403,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.samuelbeaulieu.journey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samuelbeaulieu.journey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -332,6 +412,7 @@
 		};
 		DC7AEB7020CB4CFB00BD2A00 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF1C14135F30FD1A2F3484E1 /* Pods-Journey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -341,7 +422,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.samuelbeaulieu.journey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samuelbeaulieu.journey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

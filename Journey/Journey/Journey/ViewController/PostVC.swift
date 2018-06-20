@@ -15,11 +15,28 @@ class PostVC: UIViewController {
     @IBOutlet weak var postTextInput: UITextView!
     @IBOutlet weak var characterCount: UILabel!
     @IBOutlet weak var postPhoto: UIImageView!
+    @IBOutlet weak var addPhotoBtn: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
     
     //Variables
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        postPhoto.clipsToBounds = true
+        postPhoto.layer.cornerRadius = 10
+        addPhotoBtn.layer.cornerRadius = 10
     }
+    
+    @IBAction func addPhoto(_ sender: Any) {
+        
+    }
+    
+    @IBAction func cancelPost(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    /*
+    if picture != "placeholder"
+    change btn text to edit picture
+    */
 }

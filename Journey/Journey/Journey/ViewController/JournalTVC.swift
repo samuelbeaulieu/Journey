@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FBSDKLoginKit
 
 class JournalTVC: UITableViewController {
     
@@ -15,9 +18,69 @@ class JournalTVC: UITableViewController {
     @IBOutlet weak var displayNameLabel: UILabel!
     
     //Variables
+    var newUser : Bool = true
+    var storageRef : StorageReference!
+    var userInfo = NSDictionary()
+    
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            
+        //Style for the navigation bar
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+    }
+    
+    //This is to hide the navigation controller on the journal view
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        print("You are in viewWillAppear")
+        
+        //Print user login status
+        print("User Login Status: \(isUserLoggedIn())")
+        
+        //If not connected, go directly to the introduction view
+        if isUserLoggedIn() == false {
+            performSegue(withIdentifier: "JournalToIntroduction", sender: self)
+        }
+        
+        if isUserLoggedIn() == true {
+                //Firebase Storage Reference for profile picture
+                self.storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/profilePhoto.jpg")
+                
+                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                self.storageRef.getData(maxSize: 10 * 4096 * 4096) { data, error in
+                    if error != nil {
+                        // Uh-oh, an error occurred!
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        let image = UIImage(data: data!)
+                        self.profilePhoto.image = image
+                    }
+                }
+                Auth.auth().currentUser?.reload(completion: nil)
+                let userDisplayName = Auth.auth().currentUser?.displayName!
+                displayNameLabel.text = userDisplayName!
+            
+        }
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    //This is to show the navigation controller on other views
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func isUserLoggedIn() -> Bool {
+        if Auth.auth().currentUser != nil {
+            return true
+        } else {
+            return false
+        }
     }
 
     // MARK: - Table view data source

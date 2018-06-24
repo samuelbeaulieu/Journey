@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fXn-sA-QYq">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="mh4-oZ-p0A">
+                    <rect key="frame" x="15" y="15" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="7jj-n2-Qlh"/>
+                        <constraint firstAttribute="height" constant="15" id="Bqb-qx-ktV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUl-ba-6f5">
+                    <rect key="frame" x="38" y="14" width="35" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="icc-R2-JR4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="Wi1-ku-ZM4">
+                    <rect key="frame" x="344" y="15" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="f1S-0B-yDQ"/>
+                        <constraint firstAttribute="width" constant="15" id="wi8-0b-20Q"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuP-fp-PIo">
+                    <rect key="frame" x="301" y="14" width="35" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cna-t2-FK1">
+                    <rect key="frame" x="16" y="38" width="343" height="66.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66.5" id="Ts2-V7-Nr7"/>
+                        <constraint firstAttribute="width" constant="343" id="t7h-pX-viD"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wmg-2u-Bv6" firstAttribute="bottom" secondItem="cna-t2-FK1" secondAttribute="bottom" constant="13.5" id="0tR-JE-PHK"/>
+                <constraint firstItem="mh4-oZ-p0A" firstAttribute="top" secondItem="wmg-2u-Bv6" secondAttribute="top" constant="15" id="8Yq-E9-OIr"/>
+                <constraint firstItem="mh4-oZ-p0A" firstAttribute="leading" secondItem="wmg-2u-Bv6" secondAttribute="leading" constant="15" id="DVN-p6-SDD"/>
+                <constraint firstItem="cna-t2-FK1" firstAttribute="centerX" secondItem="fXn-sA-QYq" secondAttribute="centerX" id="Egy-dn-ODY"/>
+                <constraint firstItem="PUl-ba-6f5" firstAttribute="top" secondItem="wmg-2u-Bv6" secondAttribute="top" constant="14" id="L5M-xA-zVI"/>
+                <constraint firstItem="Wi1-ku-ZM4" firstAttribute="leading" secondItem="kuP-fp-PIo" secondAttribute="trailing" constant="8" id="Wkp-fd-1EH"/>
+                <constraint firstItem="PUl-ba-6f5" firstAttribute="leading" secondItem="mh4-oZ-p0A" secondAttribute="trailing" constant="8" id="kAT-2s-tw8"/>
+                <constraint firstItem="wmg-2u-Bv6" firstAttribute="trailing" secondItem="Wi1-ku-ZM4" secondAttribute="trailing" constant="16" id="lsT-3U-7Xy"/>
+                <constraint firstItem="kuP-fp-PIo" firstAttribute="top" secondItem="wmg-2u-Bv6" secondAttribute="top" constant="14" id="qMe-59-21t"/>
+                <constraint firstItem="Wi1-ku-ZM4" firstAttribute="top" secondItem="wmg-2u-Bv6" secondAttribute="top" constant="15" id="u7U-T1-N3T"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="wmg-2u-Bv6"/>
+            <point key="canvasLocation" x="372.5" y="-300"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Clock" width="24" height="24"/>
+        <image name="Pin" width="14" height="24"/>
+    </resources>
+</document>

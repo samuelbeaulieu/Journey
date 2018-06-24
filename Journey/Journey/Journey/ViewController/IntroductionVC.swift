@@ -19,19 +19,16 @@ class IntroductionVC: UIViewController {
     
     //Variables
     var userInfo = NSDictionary()
-    
-    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style for the Facebook button
         //Creating the gradient for the Facebook button
         let gradient:CAGradientLayer = CAGradientLayer()
         let colorLeft = UIColor(red:0.24, green:0.35, blue:0.59, alpha:1.0).cgColor
         let colorRight = UIColor(red:0.37, green:0.51, blue:0.78, alpha:1.0).cgColor
-        
-        //Style for the Facebook button
         gradient.colors = [colorLeft, colorRight]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
@@ -50,41 +47,58 @@ class IntroductionVC: UIViewController {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
+    //Login with Facebook Button
     @IBAction func loginWithFacebook(_ sender: Any) {
+        //Create the reference
         let loginManager = FBSDKLoginManager()
+        //Ask for login and get some informations about the user
         loginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if error != nil {
+                //There's an error
                 print(error?.localizedDescription)
             } else if result!.isCancelled {
+                //User cancelled the login
                 print("User cancelled login")
             } else {
-                //Get User Info
+                //Connection with Facebook successful, get user informations
                 self.getUserInfo()
                 self.useFirebaseLogin()
-                self.appDelegate.connectedWithFacebook = true
+                //Close current view
                 self.dismiss(animated: true, completion: {
+                    //Reload the JournalTVC to show new informations(photo, name, posts, etc.)
                     JournalTVC().viewWillAppear(true)
                 })
             }
         }
     }
     
+    //This is called when the connection with Facebook is successful to try to login the user
     func useFirebaseLogin() {
+        //Create a token to connect the user
         let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        //Sign in the user with Firebase using the token created above
         Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
-            if error == nil {
+            if error != nil {
+                //There's an error
+                print("Could not login user \(error?.localizedDescription)")
+            } else {
                 //User logged in
                 print("Email: \(result?.user.email!)")
-            } else {
-                print("Could not login user \(error?.localizedDescription)")
             }
         }
     }
     
+    //This is called when the connection with Facebook is successful to try to get more informations about the logged in user
     func getUserInfo() {
+        //Ask for the following informations about the user
         let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, first_name, last_name, picture.type(large), gender, hometown, location"])
+        //Send the request to get the informations
         request?.start(completionHandler: { (connection, result, error) in
-            if error == nil {
+            if error != nil {
+                //There's an error
+                print("Could not get user's informations : \(error?.localizedDescription)")
+            } else {
+                //Successful
                 self.userInfo = result as! NSDictionary
                 print("Fb results: \(self.userInfo)")
             }

@@ -61,8 +61,6 @@ class LoginWithEmailVC: UIViewController {
                 if error == nil {
                     //Successful
                     print("Login Successful")
-                    self.appDelegate.connectedWithEmail = true
-                    print(self.appDelegate.connectedWithEmail)
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     //User account doesn't exist
@@ -70,8 +68,6 @@ class LoginWithEmailVC: UIViewController {
                         if error == nil {
                             //Successful
                             print("Registration Successful")
-                            self.appDelegate.connectedWithEmail = true
-                            print(self.appDelegate.connectedWithEmail)
                             self.performSegue(withIdentifier: "LoginWithEmailToNewUser", sender: self)
                         } else {
                             //There was errors

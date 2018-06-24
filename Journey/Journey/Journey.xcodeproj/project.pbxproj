@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B6D74AC077760FB5CE804823 /* Pods_Journey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3F429C808C8186AAA1148E /* Pods_Journey.framework */; };
+		DC23C1E020DAC8CC008CB733 /* PhotoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC23C1DF20DAC8CC008CB733 /* PhotoPost.xib */; };
+		DC23C1E320DAC907008CB733 /* TextPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC23C1E220DAC907008CB733 /* TextPost.xib */; };
 		DC7AEB6020CB4CF900BD2A00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */; };
 		DC7AEB6520CB4CF900BD2A00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6320CB4CF900BD2A00 /* Main.storyboard */; };
 		DC7AEB6720CB4CFB00BD2A00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7AEB6620CB4CFB00BD2A00 /* Assets.xcassets */; };
@@ -19,11 +21,14 @@
 		DC7AEB8020CB50FA00BD2A00 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */; };
 		DC9BEAE020CED23000E7EC1F /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BEADF20CED23000E7EC1F /* NewUserVC.swift */; };
 		DCA0148B20D2BA77009DFFE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA0148A20D2BA77009DFFE0 /* GoogleService-Info.plist */; };
+		DCD794A820DAD91100DC1095 /* StatsPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD794A720DAD91100DC1095 /* StatsPost.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9A3F429C808C8186AAA1148E /* Pods_Journey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCDE41C9822D49BE0681998 /* Pods-Journey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.debug.xcconfig"; sourceTree = "<group>"; };
+		DC23C1DF20DAC8CC008CB733 /* PhotoPost.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoPost.xib; sourceTree = "<group>"; };
+		DC23C1E220DAC907008CB733 /* TextPost.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextPost.xib; sourceTree = "<group>"; };
 		DC7AEB5C20CB4CF900BD2A00 /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7AEB5F20CB4CF900BD2A00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC7AEB6420CB4CF900BD2A00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +42,7 @@
 		DC7AEB7F20CB50FA00BD2A00 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		DC9BEADF20CED23000E7EC1F /* NewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
 		DCA0148A20D2BA77009DFFE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCD794A720DAD91100DC1095 /* StatsPost.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsPost.xib; sourceTree = "<group>"; };
 		DF1C14135F30FD1A2F3484E1 /* Pods-Journey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +111,9 @@
 			children = (
 				DC7AEB6820CB4CFB00BD2A00 /* LaunchScreen.storyboard */,
 				DC7AEB6320CB4CF900BD2A00 /* Main.storyboard */,
+				DCD794A720DAD91100DC1095 /* StatsPost.xib */,
+				DC23C1DF20DAC8CC008CB733 /* PhotoPost.xib */,
+				DC23C1E220DAC907008CB733 /* TextPost.xib */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -182,7 +191,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC23C1E320DAC907008CB733 /* TextPost.xib in Resources */,
 				DC7AEB6A20CB4CFB00BD2A00 /* LaunchScreen.storyboard in Resources */,
+				DC23C1E020DAC8CC008CB733 /* PhotoPost.xib in Resources */,
+				DCD794A820DAD91100DC1095 /* StatsPost.xib in Resources */,
 				DCA0148B20D2BA77009DFFE0 /* GoogleService-Info.plist in Resources */,
 				DC7AEB6720CB4CFB00BD2A00 /* Assets.xcassets in Resources */,
 				DC7AEB6520CB4CF900BD2A00 /* Main.storyboard in Resources */,

@@ -15,18 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var connectedWithEmail:Bool = false
-    var connectedWithFacebook:Bool = false
-    
-    //This func is part 5.2 on facebook
+    //This function is to integrate Facebook to the app (part 5.2)
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let handled = FBSDKApplicationDelegate.sharedInstance().application(_: application, open: url, sourceApplication: sourceApplication, annotation: annotation)
         return handled
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //This function is to configure Firebase
         FirebaseApp.configure()
-        //Next line is part 5.1 on facebook
+        //This function is to integrate Facebook to the app (part 5.1)
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }

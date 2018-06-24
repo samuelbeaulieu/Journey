@@ -16,13 +16,14 @@ class JournalTVC: UITableViewController {
     //References
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var displayNameLabel: UILabel!
+    @IBOutlet weak var dayCounterLabel: UILabel!
+    @IBOutlet weak var postCounterLabel: UILabel!
+    @IBOutlet weak var photoCounterLabel: UILabel!
     
     //Variables
     var newUser : Bool = true
     var storageRef : StorageReference!
     var userInfo = NSDictionary()
-    
-    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {

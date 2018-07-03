@@ -88,7 +88,7 @@ class LoginWithEmailVC: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
         keyboardActive = false
-    }
+    }   
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if keyboardActive == false {

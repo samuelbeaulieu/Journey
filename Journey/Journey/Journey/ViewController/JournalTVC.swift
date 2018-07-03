@@ -51,8 +51,8 @@ class JournalTVC: UITableViewController {
                 //Firebase Storage Reference for profile picture
                 self.storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/profilePhoto.jpg")
                 
-                // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                self.storageRef.getData(maxSize: 10 * 4096 * 4096) { data, error in
+                // Download in memory with a maximum allowed size of 3MB (1 * 1024 * 1024 bytes)
+                self.storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
                     if error != nil {
                         // Uh-oh, an error occurred!
                     } else {
@@ -88,23 +88,42 @@ class JournalTVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 6
     }
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 370
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostCell
 
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date / server String
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let myString = formatter.string(from: Date()) // string purpose I add here
+        // convert your string to date
+        let yourDate = formatter.date(from: myString)
+        //then again set the date format whhich type of output you need
+        formatter.dateFormat = "dd-MMM-yyyy"
+        // again convert your date to string
+        let myStringafd = formatter.string(from: yourDate!)
+        
+        
         // Configure the cell...
-
+        cell.locationLabel.text = "Montréal, Qc"
+        cell.timeLabel.text = myStringafd
+        cell.postPhoto.image = #imageLiteral(resourceName: "PictureTest")
+        cell.postText.text = "This is a test post, let's hope it's working this time."
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

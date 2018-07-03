@@ -24,16 +24,12 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     var pictureExist:Bool = false
     var keyboardActive:Bool = false
     
-    
     let imagePicker = UIImagePickerController()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    
     var storageRef : StorageReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         //Style for the profile picture
         profilePhoto.layer.cornerRadius = profilePhoto.frame.width / 2

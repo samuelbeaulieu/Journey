@@ -159,14 +159,6 @@
                                     <action selector="submitInformations:" destination="gaI-S7-fvO" eventType="touchUpInside" id="dPM-dg-O2g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-Gm-PMG">
-                                <rect key="frame" x="171" y="430" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Bcr-fv-jFq" kind="show" id="34S-xy-Onj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -191,7 +183,7 @@
                         <outlet property="emailInput" destination="mhm-r0-BZr" id="HH3-z7-FCP"/>
                         <outlet property="passwordInput" destination="fla-T7-13r" id="BH9-xn-NGc"/>
                         <outlet property="submitBtn" destination="KfO-xP-mA6" id="oK5-W2-vql"/>
-                        <segue destination="Bcr-fv-jFq" kind="show" id="9ce-wE-BtQ"/>
+                        <segue destination="Bcr-fv-jFq" kind="show" identifier="LoginToNewUser" id="9ce-wE-BtQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boq-T6-u5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -264,6 +256,9 @@
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="skipProfileSetup:" destination="Bcr-fv-jFq" eventType="touchUpInside" id="wAg-Hx-cV7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -542,7 +537,4 @@
         <image name="Logo" width="100" height="100"/>
         <image name="Settings" width="35" height="35"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="9ce-wE-BtQ"/>
-    </inferredMetricsTieBreakers>
 </document>

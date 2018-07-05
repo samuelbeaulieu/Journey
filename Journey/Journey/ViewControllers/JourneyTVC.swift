@@ -27,7 +27,7 @@ class JourneyTVC: UITableViewController {
         
         //Print user login status
         print("User Login Status: \(isUserLoggedIn())")
-        
+        try! Auth.auth().signOut()
         //If not connected, go directly to the introduction view
         if isUserLoggedIn() == false {
             performSegue(withIdentifier: "JourneyToIntroduction", sender: self)

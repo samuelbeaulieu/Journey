@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class JourneyTVC: UITableViewController {
     
@@ -19,10 +21,33 @@ class JourneyTVC: UITableViewController {
     
     // MARK: - Variables
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Print user login status
+        print("User Login Status: \(isUserLoggedIn())")
+        
+        //If not connected, go directly to the introduction view
+        if isUserLoggedIn() == false {
+            performSegue(withIdentifier: "JourneyToIntroduction", sender: self)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        //This will hide the navigation bar on this view
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    // MARK: - Firebase methods
+    func isUserLoggedIn() -> Bool {
+        if Auth.auth().currentUser != nil {
+            return true
+        } else {
+            return false
+        }
     }
 
     // MARK: - Table view data source

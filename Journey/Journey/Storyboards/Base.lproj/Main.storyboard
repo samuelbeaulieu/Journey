@@ -159,8 +159,17 @@
                                     <action selector="submitInformations:" destination="gaI-S7-fvO" eventType="touchUpInside" id="dPM-dg-O2g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-Gm-PMG">
+                                <rect key="frame" x="171" y="430" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Bcr-fv-jFq" kind="show" id="34S-xy-Onj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="mhm-r0-BZr" firstAttribute="centerX" secondItem="1eZ-Tr-K1k" secondAttribute="centerX" id="23S-DM-DYd"/>
                             <constraint firstItem="mhm-r0-BZr" firstAttribute="top" secondItem="oji-1I-W7q" secondAttribute="bottom" constant="125" id="4Ts-79-chg"/>
@@ -174,6 +183,9 @@
                             <constraint firstItem="KfO-xP-mA6" firstAttribute="centerX" secondItem="1eZ-Tr-K1k" secondAttribute="centerX" id="ivp-Fb-rjm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0im-gx-Rau"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="m2p-RA-d72" appends="YES" id="qdI-06-ksP"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailInput" destination="mhm-r0-BZr" id="HH3-z7-FCP"/>
@@ -183,6 +195,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boq-T6-u5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="m2p-RA-d72">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="gaI-S7-fvO" id="A8n-OY-vpr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3157.5" y="229.22535211267606"/>
         </scene>
@@ -194,12 +211,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H0o-Hi-2lv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Intro" translatesAutoresizingMaskIntoConstraints="NO" id="H0o-Hi-2lv">
                                 <rect key="frame" x="97.5" y="155" width="125" height="125"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="TKD-A0-WNn"/>
                                     <constraint firstAttribute="width" constant="125" id="Zwm-T5-mNn"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kdM-hj-Mg8" appends="YES" id="WSz-qB-dEQ"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tuV-fF-rek">
                                 <rect key="frame" x="35" y="295" width="250" height="30"/>
@@ -208,7 +229,7 @@
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTX-ir-q9X">
                                 <rect key="frame" x="99.5" y="89" width="121" height="36"/>
@@ -244,38 +265,25 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8E-41-c5N">
-                                <rect key="frame" x="98" y="155" width="125" height="125"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="I3E-a2-De4"/>
-                                    <constraint firstAttribute="height" constant="125" id="WF2-6d-6eC"/>
-                                </constraints>
-                                <state key="normal" title="Edit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="editProfilePhoto:" destination="Bcr-fv-jFq" eventType="touchUpInside" id="ZUz-u5-25i"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tuV-fF-rek" firstAttribute="centerX" secondItem="8a2-1x-JLu" secondAttribute="centerX" id="1QF-co-tc2"/>
                             <constraint firstItem="cTX-ir-q9X" firstAttribute="top" secondItem="mJ6-aB-7yQ" secondAttribute="top" constant="25" id="1av-nY-mLS"/>
                             <constraint firstItem="gja-l1-xJz" firstAttribute="top" secondItem="yH6-cW-rZf" secondAttribute="bottom" constant="10" id="2GC-oL-Krc"/>
                             <constraint firstItem="H0o-Hi-2lv" firstAttribute="top" secondItem="cTX-ir-q9X" secondAttribute="bottom" constant="30" id="2sb-mf-9Dy"/>
-                            <constraint firstItem="y8E-41-c5N" firstAttribute="trailing" secondItem="H0o-Hi-2lv" secondAttribute="trailing" id="5kx-nx-Qul"/>
-                            <constraint firstItem="y8E-41-c5N" firstAttribute="top" secondItem="H0o-Hi-2lv" secondAttribute="top" id="AA7-Lg-J8X"/>
                             <constraint firstItem="gja-l1-xJz" firstAttribute="centerX" secondItem="8a2-1x-JLu" secondAttribute="centerX" id="IVx-MH-2qO"/>
                             <constraint firstItem="tuV-fF-rek" firstAttribute="top" secondItem="H0o-Hi-2lv" secondAttribute="bottom" constant="15" id="KEQ-3G-eY6"/>
                             <constraint firstItem="yH6-cW-rZf" firstAttribute="centerX" secondItem="8a2-1x-JLu" secondAttribute="centerX" id="Tje-Ha-a9r"/>
                             <constraint firstItem="cTX-ir-q9X" firstAttribute="centerX" secondItem="8a2-1x-JLu" secondAttribute="centerX" id="dA2-M3-Nd7"/>
-                            <constraint firstItem="y8E-41-c5N" firstAttribute="bottom" secondItem="H0o-Hi-2lv" secondAttribute="bottom" id="hDp-pp-iuW"/>
                             <constraint firstItem="mJ6-aB-7yQ" firstAttribute="bottom" secondItem="yH6-cW-rZf" secondAttribute="bottom" constant="50" id="jRO-s4-GRq"/>
                             <constraint firstItem="H0o-Hi-2lv" firstAttribute="centerX" secondItem="8a2-1x-JLu" secondAttribute="centerX" id="oai-2K-zOf"/>
-                            <constraint firstItem="y8E-41-c5N" firstAttribute="leading" secondItem="H0o-Hi-2lv" secondAttribute="leading" id="yPD-Zj-EA5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mJ6-aB-7yQ"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5hp-Ah-XQV" appends="YES" id="bzm-23-3L0"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="nameInput" destination="tuV-fF-rek" id="Nbo-h3-nNS"/>
@@ -284,6 +292,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4E-lE-hUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kdM-hj-Mg8"/>
+                <tapGestureRecognizer id="5hp-Ah-XQV">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="Bcr-fv-jFq" id="5ay-aa-EUp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4096.875" y="228.16901408450704"/>
         </scene>
@@ -454,7 +468,7 @@
                         <outlet property="photoCountLabel" destination="mhd-Tn-nMj" id="weW-2S-SEI"/>
                         <outlet property="postCountLabel" destination="enQ-Dg-cNR" id="3CS-pg-NDc"/>
                         <outlet property="profilePhoto" destination="pnX-bV-zJ9" id="6Wm-TQ-ER3"/>
-                        <segue destination="vDL-ra-gZa" kind="presentation" id="kJM-gC-ZGJ"/>
+                        <segue destination="vDL-ra-gZa" kind="presentation" identifier="JourneyToIntroduction" id="kJM-gC-ZGJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7p-bN-r06" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -528,4 +542,7 @@
         <image name="Logo" width="100" height="100"/>
         <image name="Settings" width="35" height="35"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9ce-wE-BtQ"/>
+    </inferredMetricsTieBreakers>
 </document>

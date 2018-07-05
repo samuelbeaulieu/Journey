@@ -20,6 +20,14 @@ class NewUserVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Style for the profile picture
+        profilePhoto.layer.cornerRadius = profilePhoto.frame.width / 2
+        profilePhoto.layer.borderWidth = 1
+        profilePhoto.layer.borderColor = UIColor.lightGray.cgColor
+        profilePhoto.layer.masksToBounds = false
+        profilePhoto.clipsToBounds = true
+        
         // Style for the startBtn button
         startBtn.layer.cornerRadius = 25
         startBtn.layer.borderWidth = 1
@@ -32,5 +40,9 @@ class NewUserVC: UIViewController {
     
     @IBAction func editProfilePhoto(_ sender: Any) {
         
+    }
+    
+    @IBAction func hideKeyboard(_ sender: Any) {
+        self.view.endEditing(true)
     }
 }

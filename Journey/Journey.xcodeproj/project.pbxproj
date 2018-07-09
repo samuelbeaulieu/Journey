@@ -14,11 +14,9 @@
 		DCB75DE420EDBC2C008F2BAF /* JourneyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DE320EDBC2C008F2BAF /* JourneyTVC.swift */; };
 		DCB75DE620EDBC46008F2BAF /* IntroductionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DE520EDBC46008F2BAF /* IntroductionVC.swift */; };
 		DCB75DE820EDBC59008F2BAF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DE720EDBC59008F2BAF /* LoginVC.swift */; };
-		DCB75DEA20EDBC6D008F2BAF /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DE920EDBC6D008F2BAF /* NewUserVC.swift */; };
 		DCB75DEC20EDBC7E008F2BAF /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DEB20EDBC7E008F2BAF /* NewPostVC.swift */; };
 		DCB75DEE20EDBC8C008F2BAF /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DED20EDBC8C008F2BAF /* SettingsVC.swift */; };
 		DCB75DF020EDC38F008F2BAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCB75DEF20EDC38F008F2BAF /* GoogleService-Info.plist */; };
-		DCB75DF220EDCC50008F2BAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DF120EDCC50008F2BAF /* User.swift */; };
 		ECB8FB20EBC74294DD7678D5 /* Pods_Journey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E25E0E32669723C4DCA4CCD /* Pods_Journey.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,11 +33,9 @@
 		DCB75DE320EDBC2C008F2BAF /* JourneyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTVC.swift; sourceTree = "<group>"; };
 		DCB75DE520EDBC46008F2BAF /* IntroductionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionVC.swift; sourceTree = "<group>"; };
 		DCB75DE720EDBC59008F2BAF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		DCB75DE920EDBC6D008F2BAF /* NewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
 		DCB75DEB20EDBC7E008F2BAF /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
 		DCB75DED20EDBC8C008F2BAF /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		DCB75DEF20EDC38F008F2BAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DCB75DF120EDCC50008F2BAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +85,6 @@
 				DCB75DE220EDAAD1008F2BAF /* Storyboards */,
 				DCB75DE120EDAAAB008F2BAF /* ViewControllers */,
 				DCB75DCF20EDA99F008F2BAF /* AppDelegate.swift */,
-				DCB75DF120EDCC50008F2BAF /* User.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -100,7 +95,6 @@
 				DCB75DE320EDBC2C008F2BAF /* JourneyTVC.swift */,
 				DCB75DE520EDBC46008F2BAF /* IntroductionVC.swift */,
 				DCB75DE720EDBC59008F2BAF /* LoginVC.swift */,
-				DCB75DE920EDBC6D008F2BAF /* NewUserVC.swift */,
 				DCB75DEB20EDBC7E008F2BAF /* NewPostVC.swift */,
 				DCB75DED20EDBC8C008F2BAF /* SettingsVC.swift */,
 			);
@@ -244,11 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCB75DEA20EDBC6D008F2BAF /* NewUserVC.swift in Sources */,
 				DCB75DEC20EDBC7E008F2BAF /* NewPostVC.swift in Sources */,
 				DCB75DE620EDBC46008F2BAF /* IntroductionVC.swift in Sources */,
 				DCB75DE420EDBC2C008F2BAF /* JourneyTVC.swift in Sources */,
-				DCB75DF220EDCC50008F2BAF /* User.swift in Sources */,
 				DCB75DE820EDBC59008F2BAF /* LoginVC.swift in Sources */,
 				DCB75DD020EDA99F008F2BAF /* AppDelegate.swift in Sources */,
 				DCB75DEE20EDBC8C008F2BAF /* SettingsVC.swift in Sources */,

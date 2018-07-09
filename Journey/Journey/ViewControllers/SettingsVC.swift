@@ -7,23 +7,47 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SettingsVC: UIViewController {
-
+    
+    // MARK: - References
+    
+    @IBOutlet weak var profilePhoto: UIImageView!
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var locationSwitch: UISwitch!
+    @IBOutlet weak var timeSegment: UISegmentedControl!
+    @IBOutlet weak var disconnectBtn: UIButton!
+    @IBOutlet weak var appVersionLabel: UILabel!
+    
+    // MARK: - Variables
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getAppVersion()
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func disconnect(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true) {
+                JourneyTVC().viewWillAppear(true)
+            }
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
-    */
-
+    
+    func getAppVersion() {
+        //Get the version from the project
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            //Set the version label to the current version
+            self.appVersionLabel.text = "Version \(version)"
+        }
+    }
+    
 }

@@ -52,7 +52,9 @@ class LoginVC: UIViewController {
                         if error == nil {
                             //Successful
                             print("Registration Successful")
-                            self.performSegue(withIdentifier: "LoginToNewUser", sender: self)
+                            self.dismiss(animated: true, completion: {
+                                JourneyTVC().userIsNew()
+                            })
                         } else {
                             //There was errors
                             print("Error creating user : \(String(describing: error?.localizedDescription))")

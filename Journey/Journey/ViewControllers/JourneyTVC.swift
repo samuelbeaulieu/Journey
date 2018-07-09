@@ -25,12 +25,23 @@ class JourneyTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         //Print user login status
         print("User Login Status: \(isUserLoggedIn())")
-        try! Auth.auth().signOut()
+//        try! Auth.auth().signOut()
         //If not connected, go directly to the introduction view
         if isUserLoggedIn() == false {
             performSegue(withIdentifier: "JourneyToIntroduction", sender: self)
+        } else {
+            
+//            Auth.auth().currentUser?.reload(completion: nil)
+//            let userDisplayName = Auth.auth().currentUser?.displayName!
+//            displayNameLabel.text = userDisplayName!
+            
         }
     }
     
@@ -39,6 +50,10 @@ class JourneyTVC: UITableViewController {
         
         //This will hide the navigation bar on this view
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func userIsNew() {
+        
     }
     
     // MARK: - Firebase methods

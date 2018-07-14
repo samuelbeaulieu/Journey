@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
     // MARK: - References
     @IBOutlet weak var emailInput: UITextField!
@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var submitBtn: UIButton!
     
     // MARK: - Variables
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,8 @@ class LoginVC: UIViewController {
         submitBtn.layer.cornerRadius = 25
         submitBtn.layer.borderWidth = 1
         submitBtn.layer.borderColor = UIColor.lightGray.cgColor
+        emailInput.delegate = self
+        passwordInput.delegate = self
     }
     
     @IBAction func autoFill(_ sender: Any) {
@@ -53,7 +55,11 @@ class LoginVC: UIViewController {
                             //Successful
                             print("Registration Successful")
                             self.dismiss(animated: true, completion: {
-                                JourneyTVC().userIsNew()
+                                self.appDelegate.newUser = true
+                                print(self.appDelegate.newUser)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    JourneyTVC().viewDidAppear(true)
+                                }
                             })
                         } else {
                             //There was errors
@@ -71,5 +77,18 @@ class LoginVC: UIViewController {
     //MARK: - HIDE KEYBOARD
     @IBAction func hideKeyboard(_ sender: Any) {
         self.view.endEditing(true)
+    }
+    
+    //Hide the keyboard when 'return' key pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            submitInformations(self)
+        }
+        // Do not add a line break
+        return false
     }
 }

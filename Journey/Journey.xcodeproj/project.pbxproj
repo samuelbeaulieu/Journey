@@ -17,6 +17,7 @@
 		DCB75DEC20EDBC7E008F2BAF /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DEB20EDBC7E008F2BAF /* NewPostVC.swift */; };
 		DCB75DEE20EDBC8C008F2BAF /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DED20EDBC8C008F2BAF /* SettingsVC.swift */; };
 		DCB75DF020EDC38F008F2BAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCB75DEF20EDC38F008F2BAF /* GoogleService-Info.plist */; };
+		DCD0B83D20FF8F2200CE940A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0B83C20FF8F2200CE940A /* PostCell.swift */; };
 		ECB8FB20EBC74294DD7678D5 /* Pods_Journey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E25E0E32669723C4DCA4CCD /* Pods_Journey.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		DCB75DEB20EDBC7E008F2BAF /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
 		DCB75DED20EDBC8C008F2BAF /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		DCB75DEF20EDC38F008F2BAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCD0B83C20FF8F2200CE940A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				DCB75DE720EDBC59008F2BAF /* LoginVC.swift */,
 				DCB75DEB20EDBC7E008F2BAF /* NewPostVC.swift */,
 				DCB75DED20EDBC8C008F2BAF /* SettingsVC.swift */,
+				DCD0B83C20FF8F2200CE940A /* PostCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD0B83D20FF8F2200CE940A /* PostCell.swift in Sources */,
 				DCB75DEC20EDBC7E008F2BAF /* NewPostVC.swift in Sources */,
 				DCB75DE620EDBC46008F2BAF /* IntroductionVC.swift in Sources */,
 				DCB75DE420EDBC2C008F2BAF /* JourneyTVC.swift in Sources */,

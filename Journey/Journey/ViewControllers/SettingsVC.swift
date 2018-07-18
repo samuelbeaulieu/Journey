@@ -24,6 +24,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // MARK: - Variables
     var customPhotoExist:Bool = false
+    var photoDownloaded:Bool = false
     var keyboardActive:Bool = false
     var isPickingImage = false
     
@@ -56,7 +57,10 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        downloadPhoto()
+        if photoDownloaded == false {
+            downloadPhoto()
+            photoDownloaded = true
+        }
         
         let userDisplayName = Auth.auth().currentUser?.displayName
         nameInput.text = userDisplayName!
@@ -88,6 +92,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         storageRef.downloadURL { url, error in
             if let error = error {
                 print("error downlaoding image :\(error.localizedDescription)")
+                self.profilePhoto.image = UIImage(named: "Profile")
             } else {
                 do{
                     let imageData = try Data(contentsOf: url!)
@@ -97,7 +102,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     }
                 }
                 catch{
-                    
+                    self.profilePhoto.image = UIImage(named: "Profile")
                 }
             }
         }
@@ -111,6 +116,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         storageRef.putData(imageData!, metadata: metaData) { (strMetaData, error) in
             if error == nil{
                 print("Image Uploaded successfully")
+                self.downloadPhoto()
                 self.dismiss(animated: true, completion: nil)
             }
             else{

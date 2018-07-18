@@ -54,9 +54,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         if error == nil {
                             //Successful
                             print("Registration Successful")
-                            self.dismiss(animated: true, completion: {
-                                self.appDelegate.newUser = true
-                            })
+                            self.appDelegate.newUser = true
+                            self.dismiss(animated: true, completion: nil)
                         } else {
                             //There was errors
                             print("Error creating user : \(String(describing: error?.localizedDescription))")

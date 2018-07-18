@@ -42,9 +42,51 @@ class JourneyTVC: UITableViewController {
 //        try! Auth.auth().signOut()
         //If not connected, go directly to the introduction view
         if isUserLoggedIn() == false {
+            //Create the default user profile
+            self.displayNameLabel.text = defaultDisplayName
+            self.profilePhoto.image = UIImage(named: "Profile")
             performSegue(withIdentifier: "JourneyToIntroduction", sender: self)
         }
         if isUserLoggedIn() == true {
+            if appDelegate.newUser == true {
+                let alertViewController = NYAlertViewController()
+                // Set a title and message
+                alertViewController.title = NSLocalizedString("Welcome to Journey!", comment: "welcomeNewUserTitle")
+                alertViewController.message = NSLocalizedString("Journey doesn't require you to put your personnal informations. If you want a more personalized experience, you can edit them in the settings.", comment: "welcomeNewUserText")
+                
+                // Customize appearance as desired
+                alertViewController.buttonCornerRadius = 20
+                alertViewController.buttonColor = UIColor.darkGray
+                
+                alertViewController.transitionStyle = .slideFromTop
+                alertViewController.swipeDismissalGestureEnabled = true
+                alertViewController.backgroundTapDismissalGestureEnabled = true
+                
+                // Add alert actions
+                let editLater = NYAlertAction(
+                    title: NSLocalizedString("Edit Later", comment: "editLater"),
+                    style: .default,
+                    handler: { (action: NYAlertAction!) -> Void in
+                        self.dismiss(animated: true, completion: nil)
+                }
+                )
+                alertViewController.addAction(editLater)
+                
+                let editNow = NYAlertAction(
+                    title: NSLocalizedString("Edit Now", comment: "editNow"),
+                    style: .default,
+                    handler: { (action: NYAlertAction!) -> Void in
+                        self.dismiss(animated: true, completion: {
+                            self.performSegue(withIdentifier: "journeyToSettings", sender: self)
+                        })
+                }
+                )
+                alertViewController.addAction(editNow)
+                
+                // Present the alert view controller
+                self.present(alertViewController, animated: true, completion: nil)
+                appDelegate.newUser = false
+            }
             if Auth.auth().currentUser?.displayName == nil {
                 //Create the default user profile
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -65,45 +107,7 @@ class JourneyTVC: UITableViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        if appDelegate.newUser == true {
-            let alertViewController = NYAlertViewController()
-            // Set a title and message
-            alertViewController.title = NSLocalizedString("Welcome to Journey!", comment: "welcomeNewUserTitle")
-            alertViewController.message = NSLocalizedString("Journey doesn't require you to put your personnal informations. If you want a more personalized experience, you can edit them in the settings.", comment: "welcomeNewUserText")
-            
-            // Customize appearance as desired
-            alertViewController.buttonCornerRadius = 20
-            alertViewController.buttonColor = UIColor.darkGray
-            
-            alertViewController.transitionStyle = .slideFromTop
-            alertViewController.swipeDismissalGestureEnabled = true
-            alertViewController.backgroundTapDismissalGestureEnabled = true
-            
-            // Add alert actions
-            let editLater = NYAlertAction(
-                title: NSLocalizedString("Edit Later", comment: "editLater"),
-                style: .default,
-                handler: { (action: NYAlertAction!) -> Void in
-                    self.dismiss(animated: true, completion: nil)
-            }
-            )
-            alertViewController.addAction(editLater)
-            
-            let editNow = NYAlertAction(
-                title: NSLocalizedString("Edit Now", comment: "editNow"),
-                style: .default,
-                handler: { (action: NYAlertAction!) -> Void in
-                    self.dismiss(animated: true, completion: {
-                        self.performSegue(withIdentifier: "journeyToSettings", sender: self)
-                    })
-            }
-            )
-            alertViewController.addAction(editNow)
-            
-            // Present the alert view controller
-            self.present(alertViewController, animated: true, completion: nil)
-            appDelegate.newUser = false
-        }
+        
     }
     
     //This is to hide the navigation controller on this view
@@ -125,6 +129,7 @@ class JourneyTVC: UITableViewController {
         storageRef.downloadURL { url, error in
             if let error = error {
                 print("error downlaoding image :\(error.localizedDescription)")
+                self.profilePhoto.image = UIImage(named: "Profile")
             } else {
                 do{
                     let imageData = try Data(contentsOf: url!)
@@ -134,7 +139,7 @@ class JourneyTVC: UITableViewController {
                     }
                 }
                 catch{
-                    
+                    self.profilePhoto.image = UIImage(named: "Profile")
                 }
             }
         }
@@ -152,24 +157,56 @@ class JourneyTVC: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 370
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostCell
+        
+        cell.locationLabel.text = "Montréal, QC"
+        cell.timeLabel.text = "13:42"
+        cell.postPhoto.image = UIImage(named: "Clock")
+        cell.postText.text = "My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. "
 
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 1 {
+            return "No more post to load."
+        } else {
+            return ""
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Today"
+        } else {
+            return "Older Posts"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 30
+        } else {
+            return 0
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

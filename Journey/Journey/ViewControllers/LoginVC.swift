@@ -56,10 +56,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             print("Registration Successful")
                             self.dismiss(animated: true, completion: {
                                 self.appDelegate.newUser = true
-                                print(self.appDelegate.newUser)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    JourneyTVC().viewDidAppear(true)
-                                }
                             })
                         } else {
                             //There was errors

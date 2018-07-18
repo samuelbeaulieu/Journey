@@ -30,7 +30,6 @@ class JourneyTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Style for the navigation bar
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }

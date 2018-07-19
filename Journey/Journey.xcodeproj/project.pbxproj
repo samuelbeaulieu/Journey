@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DCAE87CD21001BF100E0CFDE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAE87CC21001BF100E0CFDE /* Post.swift */; };
 		DCB75DD020EDA99F008F2BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB75DCF20EDA99F008F2BAF /* AppDelegate.swift */; };
 		DCB75DD520EDA99F008F2BAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB75DD320EDA99F008F2BAF /* Main.storyboard */; };
 		DCB75DD720EDA9A1008F2BAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB75DD620EDA9A1008F2BAF /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		3B07AB6EA24DF46AF06438CC /* Pods-Journey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.debug.xcconfig"; sourceTree = "<group>"; };
 		5E25E0E32669723C4DCA4CCD /* Pods_Journey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC075F4E84191257F7DD29ED /* Pods-Journey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Journey/Pods-Journey.release.xcconfig"; sourceTree = "<group>"; };
+		DCAE87CC21001BF100E0CFDE /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DCB75DCC20EDA99F008F2BAF /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB75DCF20EDA99F008F2BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCB75DD420EDA99F008F2BAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				DCB75DE220EDAAD1008F2BAF /* Storyboards */,
 				DCB75DE120EDAAAB008F2BAF /* ViewControllers */,
 				DCB75DCF20EDA99F008F2BAF /* AppDelegate.swift */,
+				DCAE87CC21001BF100E0CFDE /* Post.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				DCD0B83D20FF8F2200CE940A /* PostCell.swift in Sources */,
 				DCB75DEC20EDBC7E008F2BAF /* NewPostVC.swift in Sources */,
 				DCB75DE620EDBC46008F2BAF /* IntroductionVC.swift in Sources */,
+				DCAE87CD21001BF100E0CFDE /* Post.swift in Sources */,
 				DCB75DE420EDBC2C008F2BAF /* JourneyTVC.swift in Sources */,
 				DCB75DE820EDBC59008F2BAF /* LoginVC.swift in Sources */,
 				DCB75DD020EDA99F008F2BAF /* AppDelegate.swift in Sources */,

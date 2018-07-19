@@ -241,6 +241,16 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         return true
     }
     
+    @IBAction func hideKeyboard(_ sender: Any) {
+        self.view.endEditing(true)
+        //Change the displayName on firebase
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = nameInput.text!
+        changeRequest?.commitChanges { (error) in
+            print(error?.localizedDescription)
+        }
+    }
+    
     func getAppVersion() {
         //Get the version from the project
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {

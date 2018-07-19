@@ -356,6 +356,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="HwY-f7-jjA" firstAttribute="centerX" secondItem="DnN-wg-f02" secondAttribute="centerX" id="1Vt-5K-JcG"/>
                             <constraint firstItem="Fbh-Bs-ODI" firstAttribute="bottom" secondItem="Jb7-WM-gYZ" secondAttribute="bottom" constant="5" id="3c1-uC-HnE"/>
@@ -371,6 +372,9 @@
                             <constraint firstItem="4JV-JG-UA0" firstAttribute="top" secondItem="8IW-hi-gSD" secondAttribute="bottom" constant="30" id="uk9-u2-7aa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fbh-Bs-ODI"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Bv5-dt-BdY" appends="YES" id="7CO-gA-5h0"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="appVersionLabel" destination="Ddn-xo-59z" id="y3a-d4-bd9"/>
@@ -384,6 +388,11 @@
                 <tapGestureRecognizer id="8Gd-c5-Z6V">
                     <connections>
                         <action selector="editProfilePhoto:" destination="Wd7-Fw-CrE" id="I60-Mb-p0A"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Bv5-dt-BdY">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="Wd7-Fw-CrE" id="Hst-c9-O0T"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -425,11 +434,10 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TsF-NN-R3f">
                                 <rect key="frame" x="10" y="103" width="300" height="166"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="166" id="wER-md-pcE"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -439,12 +447,6 @@
                                     <constraint firstAttribute="height" constant="238" id="uMs-vj-FhN"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrC-xR-zEb">
-                                <rect key="frame" x="245" y="239" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -453,7 +455,6 @@
                             <constraint firstItem="iDa-Hj-JDp" firstAttribute="trailing" secondItem="NhT-AG-Hjc" secondAttribute="trailing" id="8M9-nI-iux"/>
                             <constraint firstItem="F3x-a3-cm2" firstAttribute="top" secondItem="iDa-Hj-JDp" secondAttribute="top" constant="16" id="Amg-YB-U81"/>
                             <constraint firstItem="iDa-Hj-JDp" firstAttribute="bottom" secondItem="NhT-AG-Hjc" secondAttribute="bottom" constant="50" id="Con-cT-6em"/>
-                            <constraint firstItem="zrC-xR-zEb" firstAttribute="leading" secondItem="TsF-NN-R3f" secondAttribute="trailing" constant="-65" id="Eam-EK-OT1"/>
                             <constraint firstItem="10k-gM-QKk" firstAttribute="leading" secondItem="iDa-Hj-JDp" secondAttribute="leading" constant="10" id="FEf-eD-ssT"/>
                             <constraint firstItem="iDa-Hj-JDp" firstAttribute="trailing" secondItem="STw-t8-Iqh" secondAttribute="trailing" constant="10" id="Iwg-Ws-fTl"/>
                             <constraint firstItem="NhT-AG-Hjc" firstAttribute="leading" secondItem="iDa-Hj-JDp" secondAttribute="leading" id="K59-ow-e7R"/>
@@ -462,7 +463,6 @@
                             <constraint firstItem="iDa-Hj-JDp" firstAttribute="trailing" secondItem="TsF-NN-R3f" secondAttribute="trailing" constant="10" id="amd-y1-p0W"/>
                             <constraint firstItem="TsF-NN-R3f" firstAttribute="leading" secondItem="iDa-Hj-JDp" secondAttribute="leading" constant="10" id="fV2-Aj-LMj"/>
                             <constraint firstItem="O4o-60-afG" firstAttribute="top" secondItem="iDa-Hj-JDp" secondAttribute="top" constant="16" id="hlJ-cp-9FE"/>
-                            <constraint firstItem="zrC-xR-zEb" firstAttribute="top" secondItem="TsF-NN-R3f" secondAttribute="bottom" constant="-30" id="kpa-EE-pIo"/>
                             <constraint firstItem="F3x-a3-cm2" firstAttribute="leading" secondItem="10k-gM-QKk" secondAttribute="trailing" constant="8" id="noS-ai-4zB"/>
                             <constraint firstItem="STw-t8-Iqh" firstAttribute="leading" secondItem="O4o-60-afG" secondAttribute="trailing" constant="8" id="uyW-IV-zxT"/>
                         </constraints>

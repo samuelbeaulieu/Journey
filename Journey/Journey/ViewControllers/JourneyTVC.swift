@@ -162,7 +162,7 @@ class JourneyTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -174,39 +174,12 @@ class JourneyTVC: UITableViewController {
         
         cell.locationLabel.text = "Montréal, QC"
         cell.timeLabel.text = "13:42"
-        cell.postPhoto.image = UIImage(named: "Clock")
+        cell.postPhoto.image = UIImage(named: "Profile")
         cell.postText.text = "My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. "
 
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == 1 {
-            return "No more post to load."
-        } else {
-            return ""
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Today"
-        } else {
-            return "Older Posts"
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 30
-        } else {
-            return 0
-        }
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

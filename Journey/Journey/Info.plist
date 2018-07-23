@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationUsageDescription</key>
+	<string>Journey needs access to your locationso you can include it in your posts.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Journey needs access to your locationso you can include it in your posts.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Journey needs access to your photos so you can include them in your profile and posts.</string>
 	<key>NSCameraUsageDescription</key>

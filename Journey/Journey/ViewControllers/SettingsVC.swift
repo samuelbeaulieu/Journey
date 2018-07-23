@@ -181,6 +181,10 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         dismiss(animated: true)
     }
     
+    @IBAction func changeLocationAccess(_ sender: Any) {
+        
+    }
+    
     @objc func disconnect() {
         let alertViewController = NYAlertViewController()
         // Set a title and message

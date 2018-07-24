@@ -35,6 +35,7 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     var isInserting : Bool = false
     var isPickingImage = false
     
+    
     var refPost : DatabaseReference!
     
     var locationManager = CLLocationManager()
@@ -42,7 +43,12 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     //Character count
     let limitLength = 240
     var limitText:Int = 0
+    
+    let postToolbar = UIToolbar()
     var charCount = UIBarButtonItem()
+    var photoButton = UIBarButtonItem()
+    var postPhotoButton = UIBarButtonItem()
+    var flexibleSpace = UIBarButtonItem()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -52,21 +58,23 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         //Reference to the database for the post
         self.refPost = Database.database().reference().child("posts")
         
-        let postToolbar = UIToolbar()
         postToolbar.sizeToFit()
         
-        let photoButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.camera, target: self, action: #selector(self.addPostPhoto))
+        photoButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.camera, target: self, action: #selector(self.addPostPhoto))
         
         //creating flexible space
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         // creating button
         charCount = UIBarButtonItem(title: "\(limitText)/240", style: .plain, target: nil, action: nil)
         
+//        postPhotoButton = UIBarButtonItem(image: nil, style: .plain, target: nil, action: #selector(self.addPostPhoto))
+        
+        isPhotoAdded()
+        
         photoButton.tintColor = UIColor.darkGray
         charCount.tintColor = UIColor.darkGray
         
-        postToolbar.setItems([photoButton, flexibleSpace, charCount], animated: false)
         
         postText.inputAccessoryView = postToolbar
         
@@ -143,33 +151,28 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
             print("We are unable to determine your location services authorization. ")
             postLocation.isHidden = true
             postLocationPin.isHidden = true
-            appDelegate.locationAccess = false
             break
         case .authorizedWhenInUse:
             print("User authorized location services when in Use. ")
             postLocation.isHidden = false
             postLocationPin.isHidden = false
-            appDelegate.locationAccess = true
             break
         case .authorizedAlways:
             print("User authorized location services set Always. ")
             postLocation.isHidden = false
             postLocationPin.isHidden = false
-            appDelegate.locationAccess = true
             break
         case .restricted:
             // restricted by e.g. parental controls. User can't enable Location Services
             print("User can't enable location services. ")
             postLocation.isHidden = true
             postLocationPin.isHidden = true
-            appDelegate.locationAccess = false
             break
         case .denied:
             // user denied your app access to Location Services, but can grant access from Settings.app
             print("User denied location.")
             postLocation.isHidden = true
             postLocationPin.isHidden = true
-            appDelegate.locationAccess = false
             break
         default:
             break
@@ -263,7 +266,26 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         storageRef.putData(imageData!, metadata: metaData) { (strMetaData, error) in
             if error == nil{
                 print("Image Uploaded successfully")
-                self.dismiss(animated: true, completion: nil)
+                
+//                self.postPhotoButton.image = UIImage.init(data: imageData!)!.withRenderingMode(.alwaysOriginal)
+                
+                
+                
+                let menuBtn = UIButton(type: .custom)
+                menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 20, height: 20)
+                menuBtn.setImage(UIImage.init(data: imageData!)!.withRenderingMode(.alwaysOriginal), for: .normal)
+                menuBtn.addTarget(self, action: #selector(self.addPostPhoto), for: UIControlEvents.touchUpInside)
+                
+                self.photoButton = UIBarButtonItem(customView: menuBtn)
+                let currWidth = self.photoButton.customView?.widthAnchor.constraint(equalToConstant: 45)
+                currWidth?.isActive = true
+                let currHeight = self.photoButton.customView?.heightAnchor.constraint(equalToConstant: 45)
+                currHeight?.isActive = true
+                
+                
+                self.isPhotoAdded()
+                print("ima isshuiawd saduisada")
+//                self.dismiss(animated: true, completion: nil)
             }
             else{
                 print("Error Uploading image: \(String(describing: error?.localizedDescription))")
@@ -287,15 +309,6 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         })
         
         alertController.addAction(chooseExistingPhotoButton)
-        
-        if customPhotoExist == true {
-            let  deleteButton = UIAlertAction(title: NSLocalizedString("Remove existing photo", comment: "removePhoto"), style: .destructive, handler: { (action) -> Void in
-                print("Remove existing photo button tapped")
-                self.customPhotoExist = false
-            })
-            
-            alertController.addAction(deleteButton)
-        }
         
         let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel"), style: .cancel, handler: { (action) -> Void in
             print("Cancel button tapped")
@@ -326,4 +339,11 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         dismiss(animated: true)
     }
     
+    func isPhotoAdded() {
+        if postPhotoButton.image == nil {
+            postToolbar.setItems([photoButton, flexibleSpace, charCount], animated: false)
+        } else {
+            postToolbar.setItems([postPhotoButton, flexibleSpace, charCount], animated: false)
+        }
+    }
 }

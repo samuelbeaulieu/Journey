@@ -11,5 +11,7 @@ target 'Journey' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'NYAlertViewController'
+  pod 'FBSDKLoginKit'
+  pod 'Kingfisher'
   
 end

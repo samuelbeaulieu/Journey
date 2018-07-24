@@ -443,10 +443,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhT-AG-Hjc">
-                                <rect key="frame" x="175" y="147" width="100" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -484,7 +480,6 @@
                         <outlet property="postDate" destination="O4o-60-afG" id="F0r-93-2iM"/>
                         <outlet property="postLocation" destination="F3x-a3-cm2" id="nm8-g8-hro"/>
                         <outlet property="postLocationPin" destination="10k-gM-QKk" id="8VL-eh-nIJ"/>
-                        <outlet property="postPhoto" destination="NhT-AG-Hjc" id="szA-gk-qPs"/>
                         <outlet property="postText" destination="TsF-NN-R3f" id="wni-Ik-pey"/>
                     </connections>
                 </viewController>

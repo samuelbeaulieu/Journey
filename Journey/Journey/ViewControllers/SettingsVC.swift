@@ -12,6 +12,8 @@ import FirebaseAuth
 import FirebaseStorage
 import Photos
 import NYAlertViewController
+import Kingfisher
+import FBSDKLoginKit
 
 class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -27,6 +29,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     var photoDownloaded:Bool = false
     var keyboardActive:Bool = false
     var isPickingImage = false
+    var userInfo = NSDictionary()
     
     let imagePicker = UIImagePickerController()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -58,12 +61,98 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         super.viewWillAppear(true)
         
         if photoDownloaded == false {
-            downloadPhoto()
+            if let providerData = Auth.auth().currentUser?.providerData {
+                for userInfo in providerData {
+                    switch userInfo.providerID {
+                    case "facebook.com":
+                        print("user is signed in with facebook")
+                        getUserInfo()
+                        nameInput.isEnabled = false
+                        profilePhoto.isUserInteractionEnabled = false
+                        let alertViewController = NYAlertViewController()
+                        // Set a title and message
+                        alertViewController.title = NSLocalizedString("Facebook user", comment: "facebookPhoto")
+                        alertViewController.message = "If you want to edit your profile informations, edit them directly on Facebook and Journey will load the new informations as soon as it can."
+                        
+                        // Customize appearance as desired
+                        alertViewController.buttonCornerRadius = 20
+                        alertViewController.buttonColor = UIColor.darkGray
+                        //        alertViewController.cancelButtonColor
+                        
+                        alertViewController.transitionStyle = .slideFromTop
+                        alertViewController.swipeDismissalGestureEnabled = true
+                        alertViewController.backgroundTapDismissalGestureEnabled = true
+                        
+                        // Add alert actions
+                        let editLater = NYAlertAction(
+                            title: NSLocalizedString("Okay", comment: "okay"),
+                            style: .cancel,
+                            handler: { (action: NYAlertAction!) -> Void in
+                                self.dismiss(animated: true, completion: nil)
+                        }
+                        )
+                        alertViewController.addAction(editLater)
+                        
+                        // Present the alert view controller
+                        self.present(alertViewController, animated: true, completion: nil)
+                    default:
+                        print("user is signed in with \(userInfo.providerID)")
+                        //Firebase Storage Reference
+                        self.storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/profilePhoto.jpg")
+                        downloadPhoto()
+                    }
+                }
+            }
             photoDownloaded = true
         }
         
         let userDisplayName = Auth.auth().currentUser?.displayName
         nameInput.text = userDisplayName!
+    }
+    
+    //MARK: - Facebook
+    //This is called when the connection with Facebook is successful to try to get more informations about the logged in user
+    func getUserInfo() {
+        let deviceScale = UIScreen.main.bounds
+        let width = Int(deviceScale.width)
+        let height = Int(deviceScale.height)
+        //        let parameters = ["fields": "first_name, last_name, picture.width(\(width)).height(\(height))"]
+        //Ask for the following informations about the user
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, picture.width(\(width))"])
+        //Send the request to get the informations
+        request?.start(completionHandler: { (connection, result, error) in
+            if error != nil {
+                //There's an error
+                print("Could not get user's informations : \(error?.localizedDescription)")
+            } else {
+                //Successful
+                self.userInfo = result as! NSDictionary
+                print("Fb results: \(self.userInfo)")
+                
+                if FBSDKAccessToken.current() != nil {
+                    
+                    let userID = FBSDKAccessToken.current().userID
+                    
+                    if(userID != nil) //should be != nil
+                    {
+                        print(userID)
+                    }
+                    if let imageURL = ((self.userInfo["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
+                        //Download image from imageURL
+                        
+                        //                    let dictionary = result as? NSDictionary
+                        //                    let data = dictionary?.object(forKey: "data")
+                        //                    let urlPic = (data?.object(forKey: "url"))! as! String
+                        
+                        let photoURL = URL(string: imageURL)
+                        
+                        self.profilePhoto.kf.setImage(with: photoURL)
+                    }
+                }else{
+                    
+                }
+            }
+        })
     }
     
     // MARK : - Photo
@@ -94,16 +183,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                 print("error downlaoding image :\(error.localizedDescription)")
                 self.profilePhoto.image = UIImage(named: "Profile")
             } else {
-                do{
-                    let imageData = try Data(contentsOf: url!)
-                    let image = UIImage(data: imageData)
-                    DispatchQueue.main.async {
-                        self.profilePhoto.image = image
-                    }
-                }
-                catch{
-                    self.profilePhoto.image = UIImage(named: "Profile")
-                }
+                self.profilePhoto.kf.setImage(with: url)
             }
         }
     }
@@ -126,37 +206,39 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     @IBAction func editProfilePhoto(_ sender: Any) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let takeNewPhotoButton = UIAlertAction(title: NSLocalizedString("Take a new photo", comment: "takePhoto"), style: .default, handler: { (action) -> Void in
-            print("Take a new photo button tapped")
-            self.openCamera()
-        })
-        
-        alertController.addAction(takeNewPhotoButton)
-        
-        let chooseExistingPhotoButton = UIAlertAction(title: NSLocalizedString("Choose from camera roll", comment: "cameraRoll"), style: .default, handler: { (action) -> Void in
-            print("Choose from camera roll button tapped")
-            self.openLibrary()
-        })
-        
-        alertController.addAction(chooseExistingPhotoButton)
-        
-        if customPhotoExist == true {
-            let  deleteButton = UIAlertAction(title: NSLocalizedString("Remove existing photo", comment: "removePhoto"), style: .destructive, handler: { (action) -> Void in
-                print("Remove existing photo button tapped")
-                self.customPhotoExist = false
-            })
-            
-            alertController.addAction(deleteButton)
+        if let providerData = Auth.auth().currentUser?.providerData {
+            for userInfo in providerData {
+                switch userInfo.providerID {
+                case "facebook.com":
+                    print("user is signed in with facebook")
+                default:
+                    print("user is signed in with \(userInfo.providerID)")
+                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    
+                    let takeNewPhotoButton = UIAlertAction(title: NSLocalizedString("Take a new photo", comment: "takePhoto"), style: .default, handler: { (action) -> Void in
+                        print("Take a new photo button tapped")
+                        self.openCamera()
+                    })
+                    
+                    alertController.addAction(takeNewPhotoButton)
+                    
+                    let chooseExistingPhotoButton = UIAlertAction(title: NSLocalizedString("Choose from camera roll", comment: "cameraRoll"), style: .default, handler: { (action) -> Void in
+                        print("Choose from camera roll button tapped")
+                        self.openLibrary()
+                    })
+                    
+                    alertController.addAction(chooseExistingPhotoButton)
+                    
+                    let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel"), style: .cancel, handler: { (action) -> Void in
+                        print("Cancel button tapped")
+                    })
+                    alertController.addAction(cancelButton)
+                    
+                    self.navigationController!.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
         
-        let cancelButton = UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel"), style: .cancel, handler: { (action) -> Void in
-            print("Cancel button tapped")
-        })
-        alertController.addAction(cancelButton)
-        
-        self.navigationController!.present(alertController, animated: true, completion: nil)
     }
     
     func openCamera() {
@@ -264,8 +346,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     @IBAction func linkToMyPortfolio(_ sender: Any) {
-        UIApplication.shared.open(URL(string : "http://www.samuelbeaulieu.com")!, options: [:], completionHandler: { (status) in
-            
+        UIApplication.shared.open(URL(string : "https://www.samuelbeaulieu.com")!, options: [:], completionHandler: { (status) in
+
         })
     }
 }

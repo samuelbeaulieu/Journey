@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FBSDKLoginKit
 
 class IntroductionVC: UIViewController {
     
@@ -15,7 +18,7 @@ class IntroductionVC: UIViewController {
     @IBOutlet weak var emailBtn: UIButton!
     
     // MARK: - Variables
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +47,39 @@ class IntroductionVC: UIViewController {
     
     // MARK: - Facebook Login
     @IBAction func loginWithFacebook(_ sender: Any) {
-        
+        //Create the reference
+        let loginManager = FBSDKLoginManager()
+        //Ask for login and get some informations about the user
+        loginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            if error != nil {
+                //There's an error
+                print(error?.localizedDescription)
+            } else if result!.isCancelled {
+                //User cancelled the login
+                print("User cancelled login")
+            } else {
+                //Connection with Facebook successful
+                self.useFirebaseLogin()
+                //Close current view
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    //This is called when the connection with Facebook is successful to try to login the user
+    func useFirebaseLogin() {
+        //Create a token to connect the user
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        //Sign in the user with Firebase using the token created above
+        Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+            if error != nil {
+                //There's an error
+                print("Could not login user \(error?.localizedDescription)")
+            } else {
+                //User logged in
+                print("Email: \(result?.user.email!)")
+            }
+        }
     }
     
     // MARK: - Navigation Controller Style

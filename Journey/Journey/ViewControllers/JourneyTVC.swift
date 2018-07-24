@@ -11,6 +11,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import NYAlertViewController
+import FBSDKLoginKit
+import Kingfisher
 
 class JourneyTVC: UITableViewController {
     
@@ -24,6 +26,7 @@ class JourneyTVC: UITableViewController {
     // MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var defaultDisplayName:String = "John Smith"
+    var userInfo = NSDictionary()
     
     var storageRef : StorageReference!
     
@@ -96,12 +99,25 @@ class JourneyTVC: UITableViewController {
                 }
             } else {
                 
-                //Firebase Storage Reference
-                self.storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/profilePhoto.jpg")
+                if let providerData = Auth.auth().currentUser?.providerData {
+                    for userInfo in providerData {
+                        switch userInfo.providerID {
+                        case "facebook.com":
+                            print("user is signed in with facebook")
+                            getUserInfo()
+                        default:
+                            print("user is signed in with \(userInfo.providerID)")
+                            //Firebase Storage Reference
+                            self.storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/profilePhoto.jpg")
+                            downloadPhoto()
+                        }
+                    }
+                }
+
+                
                 
                 let userDisplayName = Auth.auth().currentUser?.displayName
                 displayNameLabel.text = userDisplayName!
-                downloadPhoto()
             }
         }
     }
@@ -123,7 +139,52 @@ class JourneyTVC: UITableViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    //MARK: - Facebook
+    //This is called when the connection with Facebook is successful to try to get more informations about the logged in user
+    func getUserInfo() {
+        let deviceScale = UIScreen.main.bounds
+        let width = Int(deviceScale.width)
+        let height = Int(deviceScale.height)
+        //        let parameters = ["fields": "first_name, last_name, picture.width(\(width)).height(\(height))"]
+        //Ask for the following informations about the user
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, picture.width(\(width))"])
+        //Send the request to get the informations
+        request?.start(completionHandler: { (connection, result, error) in
+            if error != nil {
+                //There's an error
+                print("Could not get user's informations : \(error?.localizedDescription)")
+            } else {
+                //Successful
+                self.userInfo = result as! NSDictionary
+                print("Fb results: \(self.userInfo)")
+                
+                if FBSDKAccessToken.current() != nil {
+                    
+                    let userID = FBSDKAccessToken.current().userID
+                    
+                    if(userID != nil) //should be != nil
+                    {
+                        print(userID)
+                    }
+                    if let imageURL = ((self.userInfo["picture"] as? [String: Any])?["data"] as? [String: Any])?["url"] as? String {
+                        //Download image from imageURL
+                        
+                        //                    let dictionary = result as? NSDictionary
+                        //                    let data = dictionary?.object(forKey: "data")
+                        //                    let urlPic = (data?.object(forKey: "url"))! as! String
+                        
+                        let photoURL = URL(string: imageURL)
+                        
+                        self.profilePhoto.kf.setImage(with: photoURL)
+                    }
+                }else{
+                    
+                }
+            }
+        })
+    }
     
+    //MARK: - Photo
     func downloadPhoto() {
         // get the download URL
         storageRef.downloadURL { url, error in
@@ -131,16 +192,7 @@ class JourneyTVC: UITableViewController {
                 print("error downlaoding image :\(error.localizedDescription)")
                 self.profilePhoto.image = UIImage(named: "Profile")
             } else {
-                do{
-                    let imageData = try Data(contentsOf: url!)
-                    let image = UIImage(data: imageData)
-                    DispatchQueue.main.async {
-                        self.profilePhoto.image = image
-                    }
-                }
-                catch{
-                    self.profilePhoto.image = UIImage(named: "Profile")
-                }
+                    self.profilePhoto.kf.setImage(with: url)
             }
         }
     }

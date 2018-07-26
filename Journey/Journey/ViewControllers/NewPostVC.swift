@@ -13,6 +13,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import Photos
 import CoreLocation
+import NYAlertViewController
 
 class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
 
@@ -21,6 +22,8 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     @IBOutlet weak var postLocation: UILabel!
     @IBOutlet weak var postDate: UILabel!
     @IBOutlet weak var postLocationPin: UIImageView!
+    @IBOutlet weak var locationPhoto: UIImageView!
+    @IBOutlet weak var timePhoto: UIImageView!
     
     // MARK: - Variables
     var customPhotoExist:Bool = false
@@ -41,7 +44,8 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     var locationManager = CLLocationManager()
     
     //Character count
-    let limitLength = 240
+    //I only need to change the value here, everything else (labels, warnings, etc) is done automaticaly
+    let limitLength = 85
     var limitText:Int = 0
     
     let postToolbar = UIToolbar()
@@ -66,17 +70,18 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         // creating button
-        charCount = UIBarButtonItem(title: "\(limitText)/240", style: .plain, target: nil, action: nil)
+        charCount = UIBarButtonItem(title: "\(limitText)/\(limitLength)", style: .plain, target: nil, action: nil)
         
 //        postPhotoButton = UIBarButtonItem(image: nil, style: .plain, target: nil, action: #selector(self.addPostPhoto))
         
-        isPhotoAdded()
         
         photoButton.tintColor = UIColor.darkGray
         charCount.tintColor = UIColor.darkGray
         
         
         postText.inputAccessoryView = postToolbar
+        
+        postToolbar.setItems([photoButton, flexibleSpace, charCount], animated: false) 
         
         setDate()
         
@@ -93,6 +98,50 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if self.appDelegate.darkMode == true {
+            UIApplication.shared.statusBarStyle = .lightContent
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]//user global variable
+            self.navigationController?.navigationBar.barStyle = .black
+            self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
+            self.navigationController?.navigationBar.tintColor = UIColor.white //user global variable
+            
+            view.backgroundColor = UIColor.darkGray
+            locationPhoto.image = UIImage(named: "PinWhite")
+            timePhoto.image = UIImage(named: "ClockWhite")
+            postDate.textColor = UIColor.white
+            postLocation.textColor = UIColor.white
+            postText.textColor = UIColor.white
+            postText.keyboardAppearance = .dark
+            postToolbar.backgroundColor = UIColor.darkGray
+            postToolbar.barTintColor = UIColor.darkGray
+            photoButton.tintColor = UIColor.white
+            charCount.tintColor = UIColor.white
+            
+        } else {
+            UIApplication.shared.statusBarStyle = .default
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]//user global variable
+            self.navigationController?.navigationBar.barStyle = .default
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.darkGray //user global variable
+            
+            view.backgroundColor = UIColor.white
+            locationPhoto.image = UIImage(named: "Pin")
+            timePhoto.image = UIImage(named: "Clock")
+            postDate.textColor = UIColor.darkGray
+            postLocation.textColor = UIColor.darkGray
+            postText.textColor = UIColor.darkGray
+            postText.keyboardAppearance = .light
+            
+            postToolbar.backgroundColor = UIColor.white
+            postToolbar.barTintColor = UIColor.white
+            photoButton.tintColor = UIColor.darkGray
+            charCount.tintColor = UIColor.darkGray
+            
+        }
+        
         callLocationServices()
     }
     
@@ -173,6 +222,43 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
             print("User denied location.")
             postLocation.isHidden = true
             postLocationPin.isHidden = true
+            let alertViewController = NYAlertViewController()
+            
+            if self.appDelegate.darkMode == true {
+                alertViewController.titleColor = UIColor.white
+                alertViewController.buttonColor = UIColor.white
+                alertViewController.buttonTitleColor = UIColor.darkGray
+                alertViewController.cancelButtonColor = UIColor.white
+                alertViewController.cancelButtonTitleColor = UIColor.darkGray
+                alertViewController.alertViewBackgroundColor = UIColor.darkGray
+                //            alertViewController.buttonTitleColor = UIColor
+            } else {
+                
+                alertViewController.buttonColor = UIColor.darkGray
+                alertViewController.alertViewBackgroundColor = UIColor.white
+            }
+            // Set a title and message
+            alertViewController.title = NSLocalizedString("Location Access Denied", comment: "noLocation")
+            alertViewController.message = "If you change your mind and want to have your location, go to your phone settings and enable location access for Journey."
+            
+            //        alertViewController.cancelButtonColor
+            
+            alertViewController.transitionStyle = .slideFromTop
+            alertViewController.swipeDismissalGestureEnabled = true
+            alertViewController.backgroundTapDismissalGestureEnabled = true
+            
+            // Add alert actions
+            let editLater = NYAlertAction(
+                title: NSLocalizedString("Okay", comment: "okay"),
+                style: .cancel,
+                handler: { (action: NYAlertAction!) -> Void in
+                    self.dismiss(animated: true, completion: nil)
+            }
+            )
+            alertViewController.addAction(editLater)
+            
+            // Present the alert view controller
+            self.present(alertViewController, animated: true, completion: nil)
             break
         default:
             break
@@ -181,12 +267,10 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     
     //MARK: - Set the date label
     func setDate() {
-        let dateFormatterToSave : DateFormatter = DateFormatter()
         let dateFormatterToShow : DateFormatter = DateFormatter()
-        dateFormatterToSave.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatterToShow.dateFormat = "HH:mm:ss"
+        dateFormatterToShow.dateFormat = "yyyy-MM-dd HH:mm:ss" //24h
+//        dateFormatterToShow.dateFormat = "yyyy-MM-dd hh:mm:ss a" //12h AM/PM
         let date = Date()
-        let dateStringToSave = dateFormatterToSave.string(from: date)
         let dateStringToShow = dateFormatterToShow.string(from: date)
         let interval = date.timeIntervalSince1970
         
@@ -201,18 +285,22 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         //change the value of the label
         if newLength <= limitLength {
             limitText = newLength
-            charCount.title = "\(newLength)/240"
+            charCount.title = "\(newLength)/\(limitLength)"
         }
         
         //Change the color of the counter
-        if limitText >= 200 && limitText < 220 {
+        if limitText >= limitLength - 25 && limitText < limitLength - 10 {
             charCount.tintColor = UIColor(red:1.00, green:0.80, blue:0.00, alpha:1.0)
-        } else if limitText >= 220 && limitText < 240 {
+        } else if limitText >= limitLength - 10 && limitText < limitLength {
             charCount.tintColor = UIColor(red:1.00, green:0.55, blue:0.00, alpha:1.0)
-        } else if limitText == 240 {
+        } else if limitText == limitLength {
             charCount.tintColor = UIColor(red:1.00, green:0.23, blue:0.19, alpha:1.0)
         } else {
-            charCount.tintColor = UIColor.darkGray
+            if self.appDelegate.darkMode == true {
+                charCount.tintColor = UIColor.white
+            } else {
+                charCount.tintColor = UIColor.darkGray
+            }
         }
         
         //Block the maximum character to the limitLength
@@ -226,14 +314,64 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     
     //MARK: - Save post
     @IBAction func saveNewPost(_ sender: Any) {
-        if (self.postText.text != "" && self.postPhoto.image != nil) {
+        if self.postText.text != "" && self.postPhoto.image != nil {
+            //All good We can save our Object
+            let id = self.refPost.childByAutoId().key
+            self.post = Post(id: id,
+                             text: self.postText.text!,
+                             location: self.postLocation.text!,
+                             date: self.postDate.text!,
+                             image: self.postPhoto.image!
+            )
             
+            self.saveToDatabaseAndAddToArtistsArray(post: self.post!)
+            if self.isInserting == true {
+                //Handle new record here
+                // self.appDelegate.artists.append(self.artist!)
+                //Handle new record here
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+        else{
+            print("All Fields are required")
         }
     }
+
+    func saveToDatabaseAndAddToArtistsArray(post:Post){
+        //getting artist id
+        let data = [
+            "id": post.id,
+            "text": post.text,
+            "location": post.location,
+            "date": post.date,
+            "image": ""
+            ] as [String : Any?]
+        self.refPost.child((Auth.auth().currentUser?.uid)!).child(post.id!).setValue(data)
     
-    //MARK: - Hide Keyboard
-    @IBAction func hideKeyboard(_ sender: Any) {
-        self.view.endEditing(true)
+        saveImageToDatabase(image: (self.post?.image)!, post: post)
+        print("Saved")
+    
+    }
+    
+    
+    func saveImageToDatabase(image: UIImage, post:Post){
+        let imageData = UIImageJPEGRepresentation(image, CGFloat(self.appDelegate.photoQuality))
+        let storageRef = Storage.storage().reference().child((Auth.auth().currentUser?.uid)!).child("posts").child((self.post?.id)!)
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        storageRef.putData(imageData!, metadata: metaData) { (strMetaData, error) in
+            if error == nil{
+                print(strMetaData)
+                print("Image Uploaded successfully")
+                self.appDelegate.posts.append(post)
+                self.dismiss(animated: true, completion: nil)
+            }
+            else{
+                print("Error Uploading image: \(String(describing: error?.localizedDescription))")
+            }
+        }
+        
     }
     
     //MARK: - Photo
@@ -243,11 +381,11 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         if let pickedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             print("image was edited")
             newImage = pickedImage
-            uploadProfilePhoto(image: newImage)
+            self.postPhoto.image = newImage
         } else if let pickedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             print("image is original")
             newImage = pickedImage
-            uploadProfilePhoto(image: newImage)
+            self.postPhoto.image = newImage
         } else {
             return
         }
@@ -255,42 +393,6 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         customPhotoExist = true
         isPickingImage = false
         dismiss(animated: true)
-    }
-    
-    func uploadProfilePhoto(image: UIImage) {
-        let imageData = UIImageJPEGRepresentation(image, 0.8)
-        
-        let storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/posts/photo.jpg")
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpeg"
-        storageRef.putData(imageData!, metadata: metaData) { (strMetaData, error) in
-            if error == nil{
-                print("Image Uploaded successfully")
-                
-//                self.postPhotoButton.image = UIImage.init(data: imageData!)!.withRenderingMode(.alwaysOriginal)
-                
-                
-                
-                let menuBtn = UIButton(type: .custom)
-                menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 20, height: 20)
-                menuBtn.setImage(UIImage.init(data: imageData!)!.withRenderingMode(.alwaysOriginal), for: .normal)
-                menuBtn.addTarget(self, action: #selector(self.addPostPhoto), for: UIControlEvents.touchUpInside)
-                
-                self.photoButton = UIBarButtonItem(customView: menuBtn)
-                let currWidth = self.photoButton.customView?.widthAnchor.constraint(equalToConstant: 45)
-                currWidth?.isActive = true
-                let currHeight = self.photoButton.customView?.heightAnchor.constraint(equalToConstant: 45)
-                currHeight?.isActive = true
-                
-                
-                self.isPhotoAdded()
-                print("ima isshuiawd saduisada")
-//                self.dismiss(animated: true, completion: nil)
-            }
-            else{
-                print("Error Uploading image: \(String(describing: error?.localizedDescription))")
-            }
-        }
     }
     
     @objc func addPostPhoto() {
@@ -337,13 +439,5 @@ class NewPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.isPickingImage = false
         dismiss(animated: true)
-    }
-    
-    func isPhotoAdded() {
-        if postPhotoButton.image == nil {
-            postToolbar.setItems([photoButton, flexibleSpace, charCount], animated: false)
-        } else {
-            postToolbar.setItems([postPhotoButton, flexibleSpace, charCount], animated: false)
-        }
     }
 }

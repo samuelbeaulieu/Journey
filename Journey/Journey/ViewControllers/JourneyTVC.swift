@@ -19,9 +19,8 @@ class JourneyTVC: UITableViewController {
     // MARK: - References
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var displayNameLabel: UILabel!
-    @IBOutlet weak var dayCountLabel: UILabel!
+    @IBOutlet weak var statsBg: UIView!
     @IBOutlet weak var postCountLabel: UILabel!
-    @IBOutlet weak var photoCountLabel: UILabel!
     
     // MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -30,8 +29,13 @@ class JourneyTVC: UITableViewController {
     
     var storageRef : StorageReference!
     
+    var refPost : DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Reference to the database for the post
+        self.refPost = Database.database().reference().child("posts")
         
         //Style for the navigation bar
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -39,6 +43,19 @@ class JourneyTVC: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if self.appDelegate.darkMode == true {
+            UIApplication.shared.statusBarStyle = .lightContent
+            self.navigationController?.navigationBar.barStyle = .black
+            statsBg.backgroundColor = UIColor.lightGray
+            postCountLabel.textColor = UIColor.white
+            view.backgroundColor = UIColor.darkGray
+        } else {
+            UIApplication.shared.statusBarStyle = .default
+            self.navigationController?.navigationBar.barStyle = .default
+            statsBg.backgroundColor = UIColor.groupTableViewBackground
+            postCountLabel.textColor = UIColor.darkGray
+            view.backgroundColor = UIColor.white
+        }
         
         //Print user login status
         print("User Login Status: \(isUserLoggedIn())")
@@ -46,6 +63,8 @@ class JourneyTVC: UITableViewController {
         //If not connected, go directly to the introduction view
         if isUserLoggedIn() == false {
             //Create the default user profile
+            self.appDelegate.posts.removeAll()
+            self.tableView.reloadData()
             self.displayNameLabel.text = defaultDisplayName
             self.profilePhoto.image = UIImage(named: "Profile")
             performSegue(withIdentifier: "JourneyToIntroduction", sender: self)
@@ -115,9 +134,33 @@ class JourneyTVC: UITableViewController {
                 }
 
                 
+                fetchData()
+                if self.appDelegate.posts.count > 0 {
+                    self.tableView.reloadData()
+                    if self.appDelegate.darkMode == true {
+                        self.tableView.backgroundColor = UIColor.darkGray
+                        self.tableView.separatorColor = UIColor.lightGray
+                    } else {
+                        self.tableView.backgroundColor = UIColor.white
+                        self.tableView.separatorColor = UIColor.lightGray
+                    }
+                    
+                } else {
+                    postCountLabel.text = "Add a post to see it below!"
+                    
+                    if self.appDelegate.darkMode == true {
+                        self.tableView.backgroundColor = UIColor.lightGray
+                        self.tableView.separatorColor = UIColor.lightGray
+                    } else {
+                        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+                        self.tableView.separatorColor = UIColor.groupTableViewBackground
+                    }
+                }
                 
                 let userDisplayName = Auth.auth().currentUser?.displayName
                 displayNameLabel.text = userDisplayName!
+                
+                
             }
         }
     }
@@ -131,6 +174,14 @@ class JourneyTVC: UITableViewController {
         
         //This will hide the navigation bar on this view
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        if self.appDelegate.darkMode == true {
+            return .lightContent
+        } else {
+            return .default
+        }
     }
     
     //This is to show the navigation controller on other views
@@ -190,7 +241,7 @@ class JourneyTVC: UITableViewController {
         storageRef.downloadURL { url, error in
             if let error = error {
                 print("error downlaoding image :\(error.localizedDescription)")
-                self.profilePhoto.image = UIImage(named: "Profile")
+//                self.profilePhoto.image = UIImage(named: "Profile")
             } else {
                     self.profilePhoto.kf.setImage(with: url)
             }
@@ -205,31 +256,122 @@ class JourneyTVC: UITableViewController {
             return false
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.tableView.beginUpdates()
+            print(self.appDelegate.posts)
+            print(indexPath.row)
+            self.refPost.child((Auth.auth().currentUser?.uid)!).child(self.appDelegate.posts[indexPath.row].id!).removeValue()
+            print(self.appDelegate.posts)
+            print(indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .none)
+            self.appDelegate.posts.remove(at: indexPath.row)
+            if self.appDelegate.posts.count > 0 {
+                self.tableView.reloadData()
+            } else {
+                postCountLabel.text = "Add a post to see it below!"
+                self.tableView.backgroundColor = UIColor.lightGray
+            }
+            self.tableView.endUpdates()
+        }
+    }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return self.appDelegate.posts.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 370
+        return 325
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostCell
         
-        cell.locationLabel.text = "Montréal, QC"
-        cell.timeLabel.text = "13:42"
-        cell.postPhoto.image = UIImage(named: "Profile")
-        cell.postText.text = "My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. My name is Sam. "
-
+        if self.appDelegate.darkMode == true {
+            cell.backgroundColor = UIColor.darkGray
+            cell.postText.textColor = UIColor.white
+            cell.timeLabel.textColor = UIColor.white
+            cell.locationLabel.textColor = UIColor.white
+            cell.locationPhoto.tintColor = UIColor.white
+            cell.timePhoto.tintColor = UIColor.white
+            cell.locationPhoto.image = UIImage(named: "PinWhite")
+            cell.timePhoto.image = UIImage(named: "ClockWhite")
+        } else {
+            cell.backgroundColor = UIColor.white
+            cell.postText.textColor = UIColor.darkGray
+            cell.timeLabel.textColor = UIColor.darkGray
+            cell.locationLabel.textColor = UIColor.darkGray
+            cell.locationPhoto.image = UIImage(named: "Pin")
+            cell.timePhoto.image = UIImage(named: "Clock")
+        }
+        
+        cell.postPhoto.layer.cornerRadius = 5
+        profilePhoto.layer.masksToBounds = false
+        profilePhoto.clipsToBounds = true
+        
+        if self.appDelegate.posts.count > 0 {
+            let post = self.appDelegate.posts[indexPath.item]
+            if post.image != nil {
+                cell.postPhoto.image = post.image
+            } else {
+                let storageRef = Storage.storage().reference().child((Auth.auth().currentUser?.uid)!).child("posts").child((post.id)!)
+                // get the download URL
+                storageRef.downloadURL { url, error in
+                    if let error = error {
+                        print("error downlaoding image :\(error.localizedDescription)")
+                    } else {
+                        cell.postPhoto.kf.setImage(with: url)
+                        self.appDelegate.posts.remove(at: indexPath.item)
+                        self.appDelegate.posts.insert(post, at: indexPath.item)
+                    }
+                }
+            }
+            cell.locationLabel.text = post.location
+            cell.timeLabel.text = post.date
+            cell.postText.text = post.text
+        }
         return cell
+    }
+    
+    func fetchData(){
+        self.refPost.child((Auth.auth().currentUser?.uid)!).observe(DataEventType.value) { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.appDelegate.posts.removeAll()
+                print("snapshot.childrenCount : \(snapshot.childrenCount)")
+                for posts in snapshot.children.allObjects as! [DataSnapshot] {
+                    //getting values
+                    let postObject = posts.value as? [String: AnyObject]
+                    //print(artistObject)
+                    let postId  = postObject?["id"]
+                    //print(artistId)
+                    let postText  = postObject?["text"]
+                    let postLocation  = postObject?["location"]
+                    let postDate  = postObject?["date"]
+                    
+                    //creating artist object with model and fetched values
+                    let post = Post(id: (postId! as! String),
+                                        text: (postText as! String?)!,
+                                        location:(postLocation as! String?)!,
+                                        date: (postDate as! String?)!,
+                                        image: nil
+                    )
+                    self.appDelegate.posts.insert(post, at: 0)
+                    self.tableView.reloadData()
+                    self.postCountLabel.text = "\(self.appDelegate.posts.count) Posts"
+                    
+                    
+                }
+                
+            }
+        }
     }
     
     /*

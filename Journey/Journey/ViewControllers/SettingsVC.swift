@@ -20,9 +20,13 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     // MARK: - References
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var nameInput: UITextField!
-    @IBOutlet weak var locationSwitch: UISwitch!
-    @IBOutlet weak var timeSegment: UISegmentedControl!
+    @IBOutlet weak var timeFormatLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
+    @IBOutlet weak var darkModeLabel: UILabel!
+    @IBOutlet weak var darkModeSwitch: UISwitch!
+    @IBOutlet weak var linkToPortfolio: UIButton!
+    @IBOutlet weak var photoQualityLabel: UILabel!
+    @IBOutlet weak var photoQualityStepper: UIStepper!
     
     // MARK: - Variables
     var customPhotoExist:Bool = false
@@ -59,6 +63,47 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        if self.appDelegate.darkMode == true {
+            darkModeSwitch.isOn = true
+            UIApplication.shared.statusBarStyle = .lightContent
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]//user global variable
+            self.navigationController?.navigationBar.barStyle = .black
+            self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
+            self.navigationController?.navigationBar.tintColor = UIColor.white //user global variable
+            
+            view.backgroundColor = UIColor.darkGray
+            nameInput.textColor = UIColor.white
+            nameInput.backgroundColor = UIColor.darkGray
+            darkModeLabel.textColor = UIColor.white
+            timeFormatLabel.textColor = UIColor.white
+            appVersionLabel.textColor = UIColor.white
+            linkToPortfolio.tintColor = UIColor.white
+            darkModeSwitch.onTintColor = UIColor.lightGray
+            photoQualityStepper.tintColor = UIColor.white
+            photoQualityLabel.textColor = UIColor.white
+        } else {
+            darkModeSwitch.isOn = false
+            
+            UIApplication.shared.statusBarStyle = .default
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]//user global variable
+            self.navigationController?.navigationBar.barStyle = .default
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.darkGray //user global variable
+            
+            view.backgroundColor = UIColor.white
+            nameInput.textColor = UIColor.darkGray
+            nameInput.backgroundColor = UIColor.white
+            darkModeLabel.textColor = UIColor.darkGray
+            timeFormatLabel.textColor = UIColor.darkGray
+            appVersionLabel.textColor = UIColor.darkGray
+            linkToPortfolio.tintColor = UIColor.darkGray
+            darkModeSwitch.onTintColor = UIColor.darkGray
+            photoQualityStepper.tintColor = UIColor.darkGray
+            photoQualityLabel.textColor = UIColor.darkGray
+        }
         
         if photoDownloaded == false {
             if let providerData = Auth.auth().currentUser?.providerData {
@@ -108,6 +153,10 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         let userDisplayName = Auth.auth().currentUser?.displayName
         nameInput.text = userDisplayName!
+        
+        photoQualityStepper.value = self.appDelegate.photoQuality
+        
+        photoQualityLabel.text = "\(Int(photoQualityStepper.value * 100))%"
     }
     
     //MARK: - Facebook
@@ -189,7 +238,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     func uploadProfilePhoto(image: UIImage) {
-        let imageData = UIImageJPEGRepresentation(image, 0.8)
+        let imageData = UIImageJPEGRepresentation(image, CGFloat(self.appDelegate.photoQuality))
         let storageRef = Storage.storage().reference().child("\((Auth.auth().currentUser?.uid)!)/profilePhoto.jpg")
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
@@ -263,8 +312,18 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         dismiss(animated: true)
     }
     
-    @IBAction func changeLocationAccess(_ sender: Any) {
-        
+    @IBAction func darkModeSwitcher(_ sender: Any) {
+        if darkModeSwitch.isOn {
+            self.appDelegate.darkMode = true
+            viewWillAppear(true)
+            JourneyTVC().viewWillAppear(true)
+            print(self.appDelegate.darkMode)
+        } else {
+            self.appDelegate.darkMode = false
+            viewWillAppear(true)
+            JourneyTVC().viewWillAppear(true)
+            print(self.appDelegate.darkMode)
+        }
     }
     
     @objc func disconnect() {
@@ -275,7 +334,19 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         // Customize appearance as desired
         alertViewController.buttonCornerRadius = 20
-        alertViewController.buttonColor = UIColor.darkGray
+        if self.appDelegate.darkMode == true {
+            alertViewController.titleColor = UIColor.white
+            alertViewController.buttonColor = UIColor.white
+            alertViewController.buttonTitleColor = UIColor.darkGray
+            alertViewController.cancelButtonColor = UIColor.white
+            alertViewController.cancelButtonTitleColor = UIColor.darkGray
+            alertViewController.alertViewBackgroundColor = UIColor.darkGray
+//            alertViewController.buttonTitleColor = UIColor
+        } else {
+            
+            alertViewController.buttonColor = UIColor.darkGray
+            alertViewController.alertViewBackgroundColor = UIColor.white
+        }
 //        alertViewController.cancelButtonColor
         
         alertViewController.transitionStyle = .slideFromTop
@@ -335,6 +406,11 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         changeRequest?.commitChanges { (error) in
             print(error?.localizedDescription)
         }
+    }
+    
+    @IBAction func changePhotoQualityStepper(_ sender: Any) {
+        photoQualityLabel.text = "\(Int(photoQualityStepper.value * 100))%"
+        self.appDelegate.photoQuality = photoQualityStepper.value
     }
     
     func getAppVersion() {

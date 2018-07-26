@@ -11,7 +11,6 @@ import UIKit
 struct Post {
     var id : String?
     var text: String
-    var album: String
     var location: String
     var date: String
     var image: UIImage?

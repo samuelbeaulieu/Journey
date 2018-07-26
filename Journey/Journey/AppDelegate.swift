@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var newUser:Bool = false
-    
+    var darkMode:Bool = false
+    var photoQuality:Double = 0.8
+
+    var posts:[Post] = []
     
     //This func is part 5.2 on facebook
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

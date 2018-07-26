@@ -13,4 +13,6 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var postText: UITextView!
     @IBOutlet weak var postPhoto: UIImageView!
+    @IBOutlet weak var locationPhoto: UIImageView!
+    @IBOutlet weak var timePhoto: UIImageView!
 }
